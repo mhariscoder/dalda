@@ -1,0 +1,174 @@
+body{
+  font-family: 'Nunito', sans-serif !important;
+}
+.accountbg{
+  background-image: url(/assets/images/helping-hand-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  /* height: auto; */
+  object-fit: cover;
+  background-position: center center;
+  margin: auto;
+  
+
+}
+
+.wrapper-page {
+  margin: 7.5% auto;
+  position: relative;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+
+.cstmCard {
+  /* opacity: 0.85!important; */
+}
+
+
+.required-class{
+  color: red;
+}
+
+.btn-block{
+  width: 100%;
+} 
+
+.container{
+  width: 80% !important;
+}
+
+label{
+  margin-bottom: 10px;
+ 
+
+}
+
+.card-body{
+  padding: 20px 35px !important;
+}
+.float-left{
+  float: left !important;
+  font-size: 14px;
+  /* color: #9ca8b3 !important; */
+}
+.float-left a{
+  color: #9ca8b3;
+}
+
+.float-right a{
+  color: #9ca8b3;
+}
+
+.float-right{
+  float: right !important;
+  font-size: 14px;
+
+
+}
+
+
+
+
+.float-left{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+ 
+}
+
+
+
+.form-control:focus{
+  border-color: red;
+  /* border: none !important; */
+  background-color: #fff !important;
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.5)!important;
+}
+
+
+.my-checkbox:checked {
+  /* Set the color when the checkbox is checked */
+  color: #318737 !important; /* For example, green */
+}
+
+/* Optional: Hide the default checkbox appearance */
+.my-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 16px;
+  width: 16px;
+  /* border: 2px solid #000000; */
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  
+}
+
+/* Optional: Create a custom indicator or icon for the checked state */
+.my-checkbox:checked::before {
+  content: "\2713"; /* Unicode checkmark character */
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: white; /* Set the color of the checkmark */
+  background-color: #318737; /* Set the background color when checked */
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.5);
+  /* box-shadow: #318737; */
+  border-radius: 5px;
+  font-weight: 900;
+}
+
+.custom-checkbox{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+
+
+
+/* media */
+@media (max-width: 800px) {
+  .container {
+     width: 100% !important;
+     
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

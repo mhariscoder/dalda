@@ -1,0 +1,32 @@
+.scroll-top.open {
+    bottom: 30px;
+}
+.scroll-top {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    bottom: 105%;
+    right: 50px;
+    font-size: 16px;
+    z-index: 99;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    background: #ed1c24;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    transition: all 500ms ease;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+}
+
+.scroll-top:hover {
+    background: #4c9e60;
+}
+
+.scroll-top:focus {
+    outline: none;
+    box-shadow: none;
+    transition: all 400ms ease;
+}
