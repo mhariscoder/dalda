@@ -55,6 +55,13 @@
                            placeholder="Student Full Name"
                            value="{{ old('fullname') }}" readonly>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="father_name">Father Name</label>
+                    <input type="text" class="form-control rounded allowAlphabetOnly"
+                           name="father_name" id="father_name"
+                           placeholder="Student Father Name"
+                           value="{{ old('father_name') }}">
+                </div>
             </div>
 
             <div class="form-row">
@@ -179,6 +186,10 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="degree_name">Other degree option </label>
+                    <input type="text" class="form-control" name="other_degree_option" />
+                </div>
+                <div class="form-group col-md-6">
                     <label for="current_city">Your Current City Name <span
                                 class="required-class">*</span></label>
                     <input type="text" class="form-control rounded allowAlphabetOnly"
@@ -300,7 +311,8 @@
                             Please enter your beneficiary's CNIC number.
                         </div>
                 </div>
-                <div class="form-group col-md-6">
+                
+                <!-- <div class="form-group col-md-6">
                     <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
                                 class="required-class">*</span></label>
                     <input type="text" class="form-control rounded"
@@ -310,6 +322,15 @@
                            <div class="invalid-feedback">
                             Please enter your beneficiary's bank address.
                         </div>
+                </div> -->
+                <div class="form-group col-md-6">
+                    <label for="year">Year <span class="required-class">*</span></label>
+                    <select class="form-control rounded" name="year">
+                        <option value="">Select</option>
+                        @foreach ($years as $val)
+                            <option value="{{$val}}" {{old('year') === $val ? "selected" : ""}}>{{$val}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
@@ -347,7 +368,7 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <!-- <div class="form-group col-md-6">
                     <label for="goals">Short & Long Term Goals and how you will pay
                         back/serve Dalda
                         Foundation after completing your degree? <span
@@ -358,8 +379,17 @@
                         <div class="invalid-feedback">
                         Please enter valid input.
                     </div>
+                </div> -->
+                <div class="form-group col-md-4">
+                    <label for="achieved_position">If you have achieved any position at the board level/University Level? please provide details  </label>
+                    <input type="text" class="form-control rounded"
+                           id="achieved_position" name="achieved_position"
+                           placeholder="Enter Your Achieved Position" minlength="13" maxlength="13"
+                           value="{{ old('achieved_position') }}" >
                 </div>
-                <div class="form-group col-md-6">
+
+                
+                <!-- <div class="form-group col-md-6">
                     <label for="suggestion">Your Suggestions, how we together can
                         develop Dalda Foundation Community to serve
                         mankind ? <span class="required-class">*</span></label>
@@ -370,6 +400,45 @@
                               <div class="invalid-feedback">
                                 Please enter valid input.
                             </div>
+                </div> -->
+                <div class="form-group col-md-4">
+                    <label for="current_college_institute_university">Share Your Current College/Institute/University Name?</label>
+                    <input type="text" class="form-control rounded" id="current_college_institute_university" name="current_college_institute_university" placeholder="Enter Your Current College/Institute/University Name?" minlength="13" maxlength="13" value="{{ old('current_college_institute_university') }}" >
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_name">Relatives Name</label>
+                    <input type="text" class="form-control rounded" id="relatives_name"
+                        name="relatives_name" placeholder="Relatives Name" value="{{ old('relatives_name') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives name is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_email">Relatives Email</label>
+                    <input type="text" class="form-control rounded" id="relatives_email"
+                        name="relatives_email" placeholder="Relatives Email" value="{{ old('relatives_email') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives email is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_contact">Relatives Contact</label>
+                    <input type="text" class="form-control rounded" id="relatives_contact"
+                        name="relatives_contact" placeholder="Relatives Contact" value="{{ old('relatives_contact') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives contact is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_address">Relatives Address</label>
+                    <input type="text" class="form-control rounded" id="relatives_address"
+                        name="relatives_address" placeholder="Relatives Address" value="{{ old('relatives_address') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives address is correct.
+                    </div>
                 </div>
             </div>
 

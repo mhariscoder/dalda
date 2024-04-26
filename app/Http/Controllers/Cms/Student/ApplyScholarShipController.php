@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Predis\Connection\ConnectionException;
 use Webklex\PDFMerger\PDFMerger;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ApplyScholarShipImport;
 
 class ApplyScholarShipController extends Controller
 {
@@ -96,38 +98,58 @@ class ApplyScholarShipController extends Controller
             'beneficary_iban_number' => 'required|max:34',
             'beneficary_bank' => 'required|max:150',
             'beneficary_cnic' => 'required|digits_between:13,15',
-            'beneficary_bank_address' => 'required|max:150',
+            // 'beneficary_bank_address' => 'required|max:150',
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'goals' => 'required|max:250',
-            'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'goals' => 'required|max:250',
+            // 'suggestion' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
-            'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
-            'share_any' => 'sometimes|nullable|max:250',
+            // 'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
+            // 'share_any' => 'sometimes|nullable|max:250',
+            
             'student_photo' => 'required|image|mimes:jpeg,jpg,png|max:800',
             'marksheet_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
             'beneficary_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800'
+            'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+
+            'scholarship_as_per_education' => 'required|max:250',
+            'father_name' => 'required|max:250',
+            'position_board_detail' => 'required|max:250',
+            'career_path_details' => 'required|max:250',
+            'matriculation_year' => 'required|max:250',
+            'preferred_test_location' => 'required|max:250',
+            'intermediate_studies' => 'required|max:250',
+            'residential_address' => 'required|max:250',
+            'relatives_name' => 'required|max:250',
+            'relatives_email' => 'required|max:250',
+            'relatives_contact' => 'required|max:250',
+            'relatives_address' => 'required|max:250',
+            'madrasa_name' => 'sometimes|nullable|max:250|max:250',
+            'madrasa_address' => 'sometimes|nullable|max:250'
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+
+            // return response()->json(['errors' => $validator->errors()], 422);
         }
 
         $authStudent = User::role('student')->where('is_block', '!=', 1)->where('id', (int)request()->student_name)->first();
 
         if (empty($authStudent)) {
-            return response()->json(['errors' => 'This user is blocked by administrator.'], 422);
+            // return response()->json(['errors' => 'This user is blocked by administrator.'], 422);
+            return redirect()->back()->withErrors(['error' => 'This user is blocked by the administrator.']);
         }
 
         $apply = ApplyScholarShip::where('user_id', $authStudent->id)->whereIn('status', ['pending', 'approved'])->where('year', request()->year)->first();
 
         if (!empty($apply)) {
             $status = $apply->status === 'approved' ? ' ' : ' applied for ';
-            return response()->json(['error' => "This student already have{$status}scholarship of that year."], 422);
+            // return response()->json(['error' => "This student already have{$status}scholarship of that year."], 422);
+            return redirect()->back()->withErrors(['error' => "This student already have{$status}scholarship of that year."]);
         }
 
         $studentData['user_id'] = $authStudent->id;
@@ -149,30 +171,30 @@ class ApplyScholarShipController extends Controller
         $studentData['beneficary_iban_number'] = request()->beneficary_iban_number;
         $studentData['beneficary_bank'] = request()->beneficary_bank;
         $studentData['beneficary_cnic'] = request()->beneficary_cnic;
-        $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
+        // $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
         $studentData['cnic_number'] = request()->cnic_number;
         $studentData['mobile_number'] = request()->mobile_number;
         $studentData['whatsapp_number'] = request()->whatsapp_number;
         $studentData['email_address'] = $authStudent->email;
-        $studentData['goals'] = request()->goals;
-        $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['goals'] = request()->goals;
+        // $studentData['suggestion'] = request()->suggestion;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
-        $studentData['english_ability_test'] = request()->english_ability_test;
-        $studentData['share_any'] = request()->share_any;
+        // $studentData['english_ability_test'] = request()->english_ability_test;
+        // $studentData['share_any'] = request()->share_any;
         $studentData['name_of_college'] = request()->name_of_college;
         $studentData['postal_address_of_college'] = request()->postal_address_of_college;
         $studentData['telephone_of_college'] = request()->telephone_of_college;
         $studentData['principal_name'] = request()->principal_name;
         $studentData['principal_number'] = request()->principal_number;
         $studentData['college_email'] = request()->college_email;
-        $studentData['teacher_name1'] = request()->teacher_name1;
-        $studentData['teach_cell_no1'] = request()->teach_cell_no1;
-        $studentData['teacher_address1'] = request()->teacher_address1;
-        $studentData['teacher_name2'] = request()->teacher_name2;
-        $studentData['teach_cell_no2'] = request()->teach_cell_no2;
-        $studentData['teacher_address2'] = request()->teacher_address2;
+        // $studentData['teacher_name1'] = request()->teacher_name1;
+        // $studentData['teach_cell_no1'] = request()->teach_cell_no1;
+        // $studentData['teacher_address1'] = request()->teacher_address1;
+        // $studentData['teacher_name2'] = request()->teacher_name2;
+        // $studentData['teach_cell_no2'] = request()->teach_cell_no2;
+        // $studentData['teacher_address2'] = request()->teacher_address2;
         $studentData['family_members'] = request()->family_members;
         $studentData['monthly_income'] = request()->monthly_income;
         $studentData['home_in_sqr_yards'] = request()->home_in_sqr_yards;
@@ -180,6 +202,21 @@ class ApplyScholarShipController extends Controller
         $studentData['any_scholarship'] = request()->any_scholarship;
         $studentData['group'] = request()->group;
         $studentData['status'] = 'approved';
+
+        $studentData['scholarship_as_per_education'] = request()->scholarship_as_per_education;
+        $studentData['father_name'] = request()->father_name;
+        $studentData['position_board_detail'] = request()->position_board_detail;
+        $studentData['career_path_details'] = request()->career_path_details;
+        $studentData['matriculation_year'] = request()->matriculation_year;
+        $studentData['preferred_test_location'] = request()->preferred_test_location;
+        $studentData['intermediate_studies'] = request()->intermediate_studies;
+        $studentData['residential_address'] = request()->residential_address;
+        $studentData['relatives_name'] = request()->relatives_name;
+        $studentData['relatives_email'] = request()->relatives_email;
+        $studentData['relatives_contact'] = request()->relatives_contact;
+        $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['madrasa_name'] = request()->madrasa_name;
+        $studentData['madrasa_address'] = request()->madrasa_address;
 
         $student = request()->file('student_photo');
         $matric_marksheet = request()->file('marksheet_photo');
@@ -233,14 +270,17 @@ class ApplyScholarShipController extends Controller
         }
 
         ApplyScholarShip::create($studentData);
-        return response()->json(['msg' => 'Student have successfully applied for scholarship.']);
+
+        // return response()->json(['msg' => 'Student have successfully applied for scholarship.']);
+        return redirect('admin/apply-for-scoloarships')->with('success', 'Student has successfully applied for scholarship.');
     }
 
     public function updateApply($applyId)
     {
         $years = ApplyScholarShip::YEARS;
         $apply = ApplyScholarShip::findOrFail($applyId);
-        return view('cms.student.scholarship.apply.update', compact('years', 'apply'));
+        $students = User::role('student')->where('is_block', '!=', 1)->get();
+        return view('cms.student.scholarship.apply.update', compact('years', 'apply', 'students'));
     }
 
     public function updateApplyData($applyId)
@@ -267,21 +307,36 @@ class ApplyScholarShipController extends Controller
             'beneficary_iban_number' => 'required|max:34',
             'beneficary_bank' => 'required|max:150',
             'beneficary_cnic' => 'required|digits_between:13,15',
-            'beneficary_bank_address' => 'required|max:150',
+            // 'beneficary_bank_address' => 'required|max:150',
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'goals' => 'required|max:250',
-            'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'goals' => 'required|max:250',
+            // 'suggestion' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
-            'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
-            'share_any' => 'sometimes|nullable|max:250',
+            // 'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
+            // 'share_any' => 'sometimes|nullable|max:250',
             'student_photo' => 'sometimes|nullable|image|mimes:jpeg,jpg,png|max:800',
             'marksheet_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
             'beneficary_cnic_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'father_mother_or_guardian_cnic_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800'
+            'father_mother_or_guardian_cnic_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+
+            'scholarship_as_per_education' => 'required|max:250',
+            'father_name' => 'required|max:250',
+            'position_board_detail' => 'required|max:250',
+            'career_path_details' => 'required|max:250',
+            'matriculation_year' => 'required|max:250',
+            'preferred_test_location' => 'required|max:250',
+            'intermediate_studies' => 'required|max:250',
+            'residential_address' => 'required|max:250',
+            'relatives_name' => 'required|max:250',
+            'relatives_email' => 'required|max:250',
+            'relatives_contact' => 'required|max:250',
+            'relatives_address' => 'required|max:250',
+            'madrasa_name' => 'sometimes|nullable|max:250|max:250',
+            'madrasa_address' => 'sometimes|nullable|max:250'
         ]);
 
         if ($validator->fails()) {
@@ -304,36 +359,51 @@ class ApplyScholarShipController extends Controller
         $studentData['beneficary_iban_number'] = request()->beneficary_iban_number;
         $studentData['beneficary_bank'] = request()->beneficary_bank;
         $studentData['beneficary_cnic'] = request()->beneficary_cnic;
-        $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
+        // $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
         $studentData['cnic_number'] = request()->cnic_number;
         $studentData['mobile_number'] = request()->mobile_number;
         $studentData['whatsapp_number'] = request()->whatsapp_number;
         $studentData['email_address'] = $apply->email_address;
-        $studentData['goals'] = request()->goals;
-        $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['goals'] = request()->goals;
+        // $studentData['suggestion'] = request()->suggestion;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
-        $studentData['english_ability_test'] = request()->english_ability_test;
-        $studentData['share_any'] = request()->share_any;
+        // $studentData['english_ability_test'] = request()->english_ability_test;
+        // $studentData['share_any'] = request()->share_any;
         $studentData['name_of_college'] = request()->name_of_college;
         $studentData['postal_address_of_college'] = request()->postal_address_of_college;
         $studentData['telephone_of_college'] = request()->telephone_of_college;
         $studentData['principal_name'] = request()->principal_name;
         $studentData['principal_number'] = request()->principal_number;
         $studentData['college_email'] = request()->college_email;
-        $studentData['teacher_name1'] = request()->teacher_name1;
-        $studentData['teach_cell_no1'] = request()->teach_cell_no1;
-        $studentData['teacher_address1'] = request()->teacher_address1;
-        $studentData['teacher_name2'] = request()->teacher_name2;
-        $studentData['teach_cell_no2'] = request()->teach_cell_no2;
-        $studentData['teacher_address2'] = request()->teacher_address2;
+        // $studentData['teacher_name1'] = request()->teacher_name1;
+        // $studentData['teach_cell_no1'] = request()->teach_cell_no1;
+        // $studentData['teacher_address1'] = request()->teacher_address1;
+        // $studentData['teacher_name2'] = request()->teacher_name2;
+        // $studentData['teach_cell_no2'] = request()->teach_cell_no2;
+        // $studentData['teacher_address2'] = request()->teacher_address2;
         $studentData['family_members'] = request()->family_members;
         $studentData['monthly_income'] = request()->monthly_income;
         $studentData['home_in_sqr_yards'] = request()->home_in_sqr_yards;
         $studentData['source_of_income'] = request()->source_of_income;
         $studentData['any_scholarship'] = request()->any_scholarship;
         $studentData['group'] = request()->group;
+
+        $studentData['scholarship_as_per_education'] = request()->scholarship_as_per_education;
+        $studentData['father_name'] = request()->father_name;
+        $studentData['position_board_detail'] = request()->position_board_detail;
+        $studentData['career_path_details'] = request()->career_path_details;
+        $studentData['matriculation_year'] = request()->matriculation_year;
+        $studentData['preferred_test_location'] = request()->preferred_test_location;
+        $studentData['intermediate_studies'] = request()->intermediate_studies;
+        $studentData['residential_address'] = request()->residential_address;
+        $studentData['relatives_name'] = request()->relatives_name;
+        $studentData['relatives_email'] = request()->relatives_email;
+        $studentData['relatives_contact'] = request()->relatives_contact;
+        $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['madrasa_name'] = request()->madrasa_name;
+        $studentData['madrasa_address'] = request()->madrasa_address;
 
         $student = request()->file('student_photo');
         $matric_marksheet = request()->file('marksheet_photo');
@@ -479,5 +549,29 @@ class ApplyScholarShipController extends Controller
         $pdf->save(public_path($fileName));
 
         return response()->download(public_path($fileName));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:csv,txt'
+        ]);
+
+        $file = $request->file('file');
+        
+        try {
+            Excel::import(new ApplyScholarShipImport(), $file);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        
+            $failures = $e->failures();
+        
+            foreach ($failures as $failure) {
+                $errors[] = $failure->errors()[0];
+            }
+
+            return redirect()->back()->withErrors($errors);
+        }
+
+        return redirect('admin/apply-for-scoloarships')->with('success', 'Import Successfully!');
     }
 }

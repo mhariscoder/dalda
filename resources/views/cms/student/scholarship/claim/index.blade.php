@@ -45,8 +45,30 @@
             </span>
             <span class="text-white"> Export </span>
         </a>
+        <form id="importForm" action="{{ url('/admin/import-claim-for-scholarship') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input id="excelImport" class="d-none" type="file" name="file" onchange="submitForm()">
+            <label for="excelImport" class="btn-shadow btn btn-success ml-2 mb-0">
+                <span class="btn-icon-wrapper pr-2 opacity-7 text-white">
+                    <i class="fas fa-file-excel fa-w-20"></i>
+                </span>
+                <span class="text-white"> Import </span>
+            </label>
+        </form>
     </div>
 </div>
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="row">
 
     <div class="col-lg-12">
@@ -373,6 +395,10 @@
                 .catch(function (error) {
                     console.log(error.data);
                 });
+        }
+
+        function submitForm() {
+            document.getElementById("importForm").submit();
         }
     </script>
 @endpush

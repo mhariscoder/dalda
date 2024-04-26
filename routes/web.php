@@ -160,6 +160,7 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
             Route::get('/apply-scholarship-change-status/{applyId}/{status}', 'ApplyScholarShipController@changeStatus');
             Route::get('/admit-card/{applyId}', 'ApplyScholarShipController@generateAdmitCard');
             Route::get('/apply-for-scoloarships/pdf/{applyId}', 'ApplyScholarShipController@generatePdf');
+            Route::post('/import-apply-for-scholarship', 'ApplyScholarShipController@import');
 
             Route::get('/claim-for-scoloarships', 'ClaimScholarShipController@index');
             Route::get('/add-claim-for-scoloarship', 'ClaimScholarShipController@addClaim');
@@ -169,6 +170,7 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
             Route::get('/claim-for-scoloarship-detail/{claimId}', 'ClaimScholarShipController@detailClaim');
             Route::get('/claim-scholarship-change-status/{claimId}/{status}', 'ClaimScholarShipController@changeStatus');
             Route::get('/claim-for-scoloarships/pdf/{claimId}', 'ClaimScholarShipController@generatePdf');
+            Route::post('/import-claim-for-scholarship', 'ClaimScholarShipController@import');
 
             Route::get('/course-offering', 'CourseOfferingController@index');
             Route::get('/add-course-offering', 'CourseOfferingController@addForm');
