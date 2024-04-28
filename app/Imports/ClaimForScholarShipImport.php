@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\ClaimScholarShip;
+use App\Models\ApplyScholarShip;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -74,7 +75,12 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
     public function rules(): array
     {
         return [
-            'student_id' => 'required|exists:users,id',
+            'student_id' => [
+                'required',
+                'exists:users,student_id',
+                'exists:scoloar_ship,student_id,status,approved',
+                'unique:claim_form,student_id'
+            ],
             'year' => 'required|in:' . implode(',', ClaimScholarShip::YEARS),
             'fullname' => 'required|max:100',
             'board_intermediate' => 'required|max:100',

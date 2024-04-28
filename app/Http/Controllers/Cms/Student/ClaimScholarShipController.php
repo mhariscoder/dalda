@@ -135,6 +135,7 @@ class ClaimScholarShipController extends Controller
         }])->where('status', '=', 'approved')->whereHas('getUser', function ($query) {
             $query->where('student_id', request()->student_id);
         })->first();
+        
         if (empty($authStudent)) {
             return response()->json(['error' => 'This user is blocked by administrator.'], 422);
         }

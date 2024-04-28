@@ -2,12 +2,15 @@
 namespace App\Imports;
 
 use App\Models\ApplyScholarShip;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
 {
@@ -19,9 +22,27 @@ class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
      */
     public function model(array $row)
     {   
+        $student_id = 0;
+        $user = User::query()->where('email', $row['email_address'])->first();
+        
+        if($user) {
+            $student_id = $user->id;
+        } else {
+            $user = User::create([
+                'first_name' => $row['fullname'] ?? null,
+                'email' => $row['email_address'] ?? null,
+                'password' => Hash::make('12345678'),
+                'remember_token' => Str::random(10),
+                'is_verified' => 1                
+            ]);
+
+            User::whereId($user->id)->update(['student_id' => $user->id]);
+            $student_id = $user->id;
+        }
+
         return new ApplyScholarShip([
-            'user_id' => auth()->user()->id,
-            'student_id' => $row['student_id'] ?? null,
+            'user_id' => $user->id,
+            'student_id' => $student_id,
             'year' => $row['year'] ?? null,
             'fullname' => $row['fullname'] ?? null,
             'matric_board' => $row['matric_board'] ?? null,
@@ -80,7 +101,7 @@ class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'student_id' => 'required|exists:users,id',
+            'student_id' => 'required|exists:users,student_id',
             'year' => 'required|in:' . implode(',', ApplyScholarShip::YEARS),
             'matric_board' => 'required|max:150',
             'group' => 'required|max:150',
