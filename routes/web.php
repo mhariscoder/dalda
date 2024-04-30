@@ -396,6 +396,8 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
             Route::post('/update-gallery-video-list/{galleryVideoId}', 'CMSGalleryVideoController@updateVideoListData');
             Route::get('/delete-gallery-video-list/{galleryVideoId}', 'CMSGalleryVideoController@deleteVideoList');
         });
+
+        Route::post('/forms-filter', 'HomeController@formsFilter');
     });
 });
 
