@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Predis\Connection\ConnectionException;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ClaimForScholarShipImport;
 
 class ClaimScholarShipController extends Controller
 {
@@ -75,7 +77,9 @@ class ClaimScholarShipController extends Controller
     public function addClaim()
     {
         $students = User::where('student_id', '!=', NULL)->get();
-        return view('cms.student.scholarship.claim.add', compact('students'));
+        $years = ApplyScholarShip::YEARS;
+        
+        return view('cms.student.scholarship.claim.add', compact('students', 'years'));
     }
 
     public function addClaimData()
@@ -83,7 +87,7 @@ class ClaimScholarShipController extends Controller
         $studentData = array();
 
         $validator = Validator::make(request()->all(), [
-            'student_id' => 'required|unique:claim_form,student_id,NULL,id,deleted_at,NULL',
+            // 'student_id' => 'required|unique:claim_form,student_id,NULL,id,deleted_at,NULL',
             'fullname' => 'required|max:100',
             'board_intermediate' => 'required|max:100',
             'marks_in_xi' => 'required|max:7|regex:/^[1-5]{1}[0-9]{2}\/[0-9]{3}$/i',
@@ -99,27 +103,27 @@ class ClaimScholarShipController extends Controller
             'beneficary_iban_number' => 'required|max:34',
             'beneficary_bank' => 'required|max:150',
             'beneficary_cnic' => 'required|digits_between:13,15',
-            'beneficary_bank_address' => 'required|max:150',
+            // 'beneficary_bank_address' => 'required|max:150',
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'goals' => 'required|max:250',
-            'suggestion' => 'required|max:250',
+            // 'goals' => 'required|max:250',
+            // 'suggestion' => 'required|max:250',
             'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'share_any' => 'sometimes|nullable|max:250',
-            'student_photo' => 'required|image|mimes:jpeg,jpg,png|max:800',
-            'matric_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            'intermediate_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            'bachelor_one_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'bachelor_two_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'bachelor_three_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'bachelor_four_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'bachelor_five_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            'beneficary_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800'
+            // 'student_photo' => 'required|image|mimes:jpeg,jpg,png|max:800',
+            // 'matric_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'intermediate_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'bachelor_one_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'bachelor_two_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'bachelor_three_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'bachelor_four_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'bachelor_five_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'beneficary_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            // 'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800'
         ]);
 
         if ($validator->fails()) {
@@ -131,6 +135,7 @@ class ClaimScholarShipController extends Controller
         }])->where('status', '=', 'approved')->whereHas('getUser', function ($query) {
             $query->where('student_id', request()->student_id);
         })->first();
+        
         if (empty($authStudent)) {
             return response()->json(['error' => 'This user is blocked by administrator.'], 422);
         }
@@ -182,6 +187,17 @@ class ClaimScholarShipController extends Controller
         $bcfive_marksheet = request()->file('bachelor_five_photo');
         $beneficary_cnic = request()->file('beneficary_cnic_photo');
         $parent_cnic = request()->file('parent_cnic_photo');
+
+        // new fields
+        $studentData['other_degree_option'] = request()->other_degree_option;
+        $studentData['father_name'] = request()->father_name;
+        $studentData['year'] = request()->year;
+        $studentData['achieved_position'] = request()->achieved_position;
+        $studentData['current_college_institute_university'] = request()->current_college_institute_university;
+        $studentData['relatives_name'] = request()->relatives_name;
+        $studentData['relatives_email'] = request()->relatives_email;
+        $studentData['relatives_contact'] = request()->relatives_contact;
+        $studentData['relatives_address'] = request()->relatives_address;
 
         if (!empty($student)) {
             $extension = $student->extension();
@@ -306,7 +322,8 @@ class ClaimScholarShipController extends Controller
     public function updateClaim($claimId)
     {
         $claim = ClaimScholarShip::findOrFail($claimId);
-        return view('cms.student.scholarship.claim.update', compact('claim'));
+        $years = ApplyScholarShip::YEARS;
+        return view('cms.student.scholarship.claim.update', compact('claim', 'years'));
     }
 
     public function updateClaimData($claimId)
@@ -341,12 +358,12 @@ class ClaimScholarShipController extends Controller
             'beneficary_iban_number' => 'required|max:34',
             'beneficary_bank' => 'required|max:150',
             'beneficary_cnic' => 'required|digits_between:13,15',
-            'beneficary_bank_address' => 'required|max:150',
+            // 'beneficary_bank_address' => 'required|max:150',
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'goals' => 'required|max:250',
-            'suggestion' => 'required|max:250',
+            // 'goals' => 'required|max:250',
+            // 'suggestion' => 'required|max:250',
             'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
@@ -409,6 +426,17 @@ class ClaimScholarShipController extends Controller
         $bcfive_marksheet = request()->file('bachelor_five_photo');
         $beneficary_cnic = request()->file('beneficary_cnic_photo');
         $parent_cnic = request()->file('father_mother_or_guardian_cnic_photo');
+
+        // new fields
+        $studentData['other_degree_option'] = request()->other_degree_option;
+        $studentData['father_name'] = request()->father_name;
+        $studentData['year'] = request()->year;
+        $studentData['achieved_position'] = request()->achieved_position;
+        $studentData['current_college_institute_university'] = request()->current_college_institute_university;
+        $studentData['relatives_name'] = request()->relatives_name;
+        $studentData['relatives_email'] = request()->relatives_email;
+        $studentData['relatives_contact'] = request()->relatives_contact;
+        $studentData['relatives_address'] = request()->relatives_address;
 
         if (!empty($student)) {
             Storage::delete('public/uploads/' . $claim->student_photo);
@@ -623,5 +651,29 @@ class ClaimScholarShipController extends Controller
         $pdf->save(public_path($fileName));
 
         return response()->download(public_path($fileName));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:csv,txt'
+        ]);
+
+        $file = $request->file('file');
+        
+        try {
+            Excel::import(new ClaimForScholarShipImport(), $file);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        
+            $failures = $e->failures();
+        
+            foreach ($failures as $failure) {
+                $errors[] = $failure->errors()[0];
+            }
+
+            return redirect()->back()->withErrors($errors);
+        }
+
+        return redirect('admin/claim-for-scoloarships')->with('success', 'Import Successfully!');
     }
 }

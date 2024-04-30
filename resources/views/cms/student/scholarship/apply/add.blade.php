@@ -28,7 +28,7 @@
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Add Scholarship</h5>
-            <form action="/admin/apply-for-scoloarships" method="POST" class="needs-validation" novalidate>
+            <form action="/admin/add-apply-for-scoloarship" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -42,6 +42,17 @@
                 @endif
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
+                        <label for="scholarship_as_per_education">Please select a scholarship according to your education<span class="required-class">*</span></label>
+                        <select class="form-control rounded allowAlphabetOnly" name="scholarship_as_per_education" required>
+                            <option selected disabled value=""> -- Select -- </option>
+                            <option value="Professional ">Professional</option>
+                            <option value="Technical">Technical</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a student name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <label for="student_name">Student Name<span class="required-class">*</span></label>
                         <select class="form-control rounded allowAlphabetOnly" name="student_name" required>
                             <option selected disabled value=""> -- Select -- </option>
@@ -53,6 +64,14 @@
                         </select>
                         <div class="invalid-feedback">
                             Please select a student name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="father_name">Father Name<span class="required-class">*</span></label>
+                        <input type="text" class="form-control" id="father_name" name="father_name"
+                            placeholder="Father Name" value="{{ old('father_name') }}" required>
+                        <div class="invalid-feedback">
+                            Please select a father name.
                         </div>
                     </div>
                 </div>
@@ -78,6 +97,15 @@
                             Invalid matric board input.
                         </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="matriculation_year">Matriculation Year <span class="required-class">*</span></label>
+                        <input type="text" class="form-control" id="matriculation_year" name="matriculation_year"
+                            placeholder="Enter Matriculation Year" value="{{ old('matriculation_year') }}" required maxlength="100">
+                        <div class="invalid-feedback">
+                            Invalid matriculation year input.
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
@@ -155,7 +183,7 @@
                             Please make sure beneficiary CNIC number is correct.
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <!-- <div class="col-md-6 mb-3">
                         <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
                                 class="required-class">*</span></label>
                         <input type="text" class="form-control rounded" id="beneficary_bank_address"
@@ -164,8 +192,140 @@
                         <div class="invalid-feedback">
                             Please enter a bank address.
                         </div>
+                    </div> -->
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="position_board_detail">Position Board Details </label>
+                        <input type="text" class="form-control rounded " id="position_board_detail"
+                            name="position_board_detail" placeholder="Enter Position Board Details"
+                            value="{{ old('position_board_detail') }}"  required>
+                        <div class="invalid-feedback">
+                            Please make sure position board details is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="career_path_details">Career Path Details </label>
+                        <input type="text" class="form-control rounded" id="career_path_details"
+                            name="career_path_details" placeholder="Enter Career Path Details"
+                            value="{{ old('career_path_details') }}"  required>
+                        <div class="invalid-feedback">
+                            Please make sure career path details is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="preferred_test_location">Preferred Test Location<span class="required-class">*</span></label>
+                        <select class="form-control rounded" name="preferred_test_location" required>
+                            <option selected disabled value=""> -- Select -- </option>
+                            Lahore
+                            <option value="Sukkur">Sukkur</option>
+                            <option value="Peshawar">Peshawar</option>
+                            <option value="Rawalpindi">Rawalpindi</option>
+                            <option value="Karachi">Karachi</option>
+                            <option value="Swat">Swat</option>
+                            <option value="DG Khan">DG Khan</option> 
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Multan">Multan</option>
+                            <option value="Bahawalpur">Bahawalpur</option>
+                            <option value="Quetta">Quetta</option>
+                            <option value="Skurdu">Skurdu</option>
+                            <option value="Muzaffarabad">Muzaffarabad</option>
+                            <option value="Rawal Akot">Rawal Akot</option> 
+                            <option value="Mirpur">Mirpur</option>
+                            <option value="Loralai">Loralai</option>
+                            <option value="Sargodha">Sargodha</option>
+                            <option value="D.I Khan">D.I Khan</option>
+                            <option value="Larkana">Larkana</option>
+                            <option value="Faisalabad">Faisalabad</option>
+                            <option value="Gujranwala">Gujranwala</option>
+                            <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                            <option value="Abbottabad">Abbottabad</option>
+                            <option value="Jhelum">Jhelum</option>
+                            <option value="Gilgit">Gilgit</option>
+                            <option value="Chakwal">Chakwal</option>
+                            <option value="Sahiwal">Sahiwal</option>
+                            <option value="Mardan">Mardan</option>
+                            <option value="Gwadar">Gwadar</option>
+                            <option value="Sialkot">Sialkot</option>  
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a test location.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="intermediate_studies">Intermediate Studies</label>
+                        <input type="text" class="form-control rounded" id="intermediate_studies"
+                            name="intermediate_studies" placeholder="Intermediate Studies" value="{{ old('intermediate_studies') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your intermediate studies is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="residential_address">Residential Address</label>
+                        <input type="text" class="form-control rounded" id="residential_address"
+                            name="residential_address" placeholder="Residential Address" value="{{ old('residential_address') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your residential address is correct.
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_name">Relatives Name</label>
+                        <input type="text" class="form-control rounded" id="relatives_name"
+                            name="relatives_name" placeholder="Relatives Name" value="{{ old('relatives_name') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives name is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_email">Relatives Email</label>
+                        <input type="text" class="form-control rounded" id="relatives_email"
+                            name="relatives_email" placeholder="Relatives Email" value="{{ old('relatives_email') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives email is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_contact">Relatives Contact</label>
+                        <input type="text" class="form-control rounded" id="relatives_contact"
+                            name="relatives_contact" placeholder="Relatives Contact" value="{{ old('relatives_contact') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives contact is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_address">Relatives Address</label>
+                        <input type="text" class="form-control rounded" id="relatives_address"
+                            name="relatives_address" placeholder="Relatives Address" value="{{ old('relatives_address') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives address is correct.
+                        </div>
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="madrasa_name">Madrasa Name</label>
+                        <input type="text" class="form-control rounded" id="madrasa_name"
+                            name="madrasa_name" placeholder="Madrasa Name" value="{{ old('madrasa_name') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your madrasa name is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="madrasa_address">Madrasa Address</label>
+                        <input type="text" class="form-control rounded" id="madrasa_address"
+                            name="madrasa_address" placeholder="Madrasa Address" value="{{ old('madrasa_address') }}">
+                        <div class="invalid-feedback">
+                            Please make sure your madrasa address is correct.
+                        </div>
+                    </div>
+                </div>
+
                 <hr>
                 <h5 class="card-title">College Information</h5>
                 <hr>
@@ -227,10 +387,12 @@
                 <hr>
                 <h5 class="card-title">References</h5>
                 <hr>
-                <div class="label">
+
+                <!-- <div class="label">
                     <span class="font-weight-bold">Please give your teacher or neighbor reference which are not your
                         relatives </span>
                 </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="password">Name<span class="required-class">*</span></label>
@@ -288,7 +450,8 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
+
                 <div class="label">
                     <span class="font-weight-bold">If the above information is incorrect, the form will be declined</span>
                 </div>
@@ -370,7 +533,7 @@
                             value="{{ old('whatsapp_number') }}" minlength="11" maxlength="13">
                     </div>
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="goals">Short & Long Term Goals and how you will pay back/serve Dalda
                             Foundation after completing your degree ? <span class="required-class">*</span></label>
@@ -380,8 +543,8 @@
                             Please enter valid input.
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
+                </div> -->
+                <!-- <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="suggestion">Your Suggestions, how we together can develop Dalda Foundation Community to
                             serve
@@ -392,8 +555,8 @@
                             Please enter valid input.
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
+                </div> -->
+                <!-- <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="your_contribution">What role you will play for Dalda
                             Foundation Community ? <span class="required-class">*</span></label>
@@ -403,7 +566,7 @@
                             Please enter valid input.
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-row">
                     <div class="form-group form-check col-md-6">
                         <label for="contact">Are you interested in achieving international
@@ -461,7 +624,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="contact">Are you ready to take English ability test such
                             as IELTS/TOEFL/PTE/PVT/ITEP/DUOLINGO ? <span class="required-class">*</span></label><br>
@@ -487,8 +650,8 @@
                                 for="english_ability_test_may">May be</label>
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
+                </div> -->
+                <!-- <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="share_any">Anything you want to share with Dalda
                             Foundation Trust ?</label>
@@ -496,7 +659,7 @@
                             maxlength="250">{{ old('share_any') }}</textarea>
 
                     </div>
-                </div>
+                </div> -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Student Photo <span class="required-class">*</span></label>
@@ -634,14 +797,14 @@
                                             </div>
 
                                             <div class="form-row">
-                                                <div class="form-group col-md-6">
+                                                <!-- <div class="form-group col-md-6">
                                                     <label for="group">Group <span
                                                                 class="required-class">*</span></label>
                                                     <input type="text" class="form-control rounded"
                                                            id="group"
                                                            name="group" placeholder="Enter Group"
                                                            value="{{ old('group') }}" maxlength="100">
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group col-md-6">
                                                     <label for="marks_in_matric">Marks in Matric ( Write in this format:
                                                         600/1050 ) <span class="required-class">*</span></label>
@@ -910,7 +1073,7 @@
                                             </div>
 
                                             <div class="form-row">
-                                                <div class="form-group col-md-6">
+                                                <!-- <div class="form-group col-md-6">
                                                     <label for="cnic">Are you ready to take standardized tests such as
                                                         GRE/GMAT/LSAT ? <span
                                                                 class="required-class">*</span></label>
@@ -939,7 +1102,7 @@
                                                         <label class="custom-control-label checkbox-primary outline"
                                                                for="standarized_test_may">May be</label>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="form-group col-md-6">
                                                     <label for="contact">Are you ready to take English ability test such

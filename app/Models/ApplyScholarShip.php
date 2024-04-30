@@ -57,7 +57,21 @@ class ApplyScholarShip extends Model
         'marksheet_photo',
         'beneficary_cnic_photo',
         'parent_cnic_photo',
-        'status'
+        'status',
+        'scholarship_as_per_education',
+        'father_name',
+        'position_board_detail',
+        'career_path_details',
+        'matriculation_year',
+        'preferred_test_location',
+        'intermediate_studies',
+        'residential_address',
+        'relatives_name',
+        'relatives_email',
+        'relatives_contact',
+        'relatives_address',
+        'madrasa_name',
+        'madrasa_address'
     ];
 
     const YEARS = ['2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025', '2025-2026', '2026-2027', '2027-2028'];

@@ -56,6 +56,33 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
+                        <label for="scholarship_as_per_education">Please select a scholarship according to your education<span class="required-class">*</span></label>
+                        <select class="form-control rounded allowAlphabetOnly" name="scholarship_as_per_education" required>
+                            <option selected disabled value=""> -- Select -- </option>
+                            <option <?= ($apply->scholarship_as_per_education === 'Professional') ? 'selected' : '' ?> value="Professional ">Professional</option>
+                            <option <?= ($apply->scholarship_as_per_education === 'Technical') ? 'selected' : '' ?> value="Technical">Technical</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a student name.
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="student_name">Student Name<span class="required-class">*</span></label>
+                        <input type="text" value="{{ $apply->fullname }}" disabled class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="father_name">Father Name<span class="required-class">*</span></label>
+                        <input type="text" class="form-control" id="father_name" name="father_name"
+                            placeholder="Father Name" value="{{ $apply->father_name }}" required>
+                        <div class="invalid-feedback">
+                            Please select a father name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <label for="year">Year<span class="required-class">*</span></label>
                         <select class="form-control rounded" name="year" required>
                             <option value="">Select</option>
@@ -69,18 +96,20 @@
                             Please select a year.
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="fullname">Full Name <span class="required-class">*</span></label>
-                        <input type="text" class="form-control rounded" value="{{ $apply->fullname }}">
-                    </div>
                     <div class="col-md-6 mb-3">
                         <label for="matric_board">Matric Board <span class="required-class">*</span></label>
                         <input type="text" class="form-control" id="matric_board" name="matric_board"
                             placeholder="Enter Matric Board" value="{{ $apply->matric_board }}" maxlength="100" required>
                         <div class="invalid-feedback">
                             Invalid matric board input.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="matriculation_year">Matriculation Year <span class="required-class">*</span></label>
+                        <input type="text" class="form-control" id="matriculation_year" name="matriculation_year"
+                            placeholder="Enter Matriculation Year" value="{{ $apply->matriculation_year }}" required maxlength="100">
+                        <div class="invalid-feedback">
+                            Invalid matriculation year input.
                         </div>
                     </div>
                 </div>
@@ -159,7 +188,7 @@
                             Please make sure beneficiary CNIC number is correct.
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <!-- <div class="col-md-6 mb-3">
                         <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
                                 class="required-class">*</span></label>
                         <input type="text" class="form-control rounded" id="beneficary_bank_address"
@@ -168,8 +197,146 @@
                         <div class="invalid-feedback">
                             Please enter a bank address.
                         </div>
+                    </div> -->
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="position_board_detail">Position Board Details </label>
+                        <input type="text" class="form-control rounded " id="position_board_detail"
+                            name="position_board_detail" placeholder="Enter Position Board Details"
+                            value="{{ $apply->position_board_detail }}"  required>
+                        <div class="invalid-feedback">
+                            Please make sure position board details is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="career_path_details">Career Path Details </label>
+                        <input type="text" class="form-control rounded" id="career_path_details"
+                            name="career_path_details" placeholder="Enter Career Path Details"
+                            value="{{ $apply->career_path_details }}"  required>
+                        <div class="invalid-feedback">
+                            Please make sure career path details is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="preferred_test_location">Preferred Test Location<span class="required-class">*</span></label>
+                        <select class="form-control rounded" name="preferred_test_location" required>
+                            <option disabled value=""> -- Select -- </option>
+                            Lahore
+                            <option <?= ($apply->preferred_test_location === 'Sukkur') ? 'selected' : '' ?> value="Sukkur">Sukkur</option>
+                            <option <?= ($apply->preferred_test_location === 'Peshawar') ? 'selected' : '' ?> value="Peshawar">Peshawar</option>
+                            <option <?= ($apply->preferred_test_location === 'Rawalpindi') ? 'selected' : '' ?> value="Rawalpindi">Rawalpindi</option>
+                            <option <?= ($apply->preferred_test_location === 'Karachi') ? 'selected' : '' ?> value="Karachi">Karachi</option>
+                            <option <?= ($apply->preferred_test_location === 'Swat') ? 'selected' : '' ?> value="Swat">Swat</option>
+                            <option <?= ($apply->preferred_test_location === 'DG Khan') ? 'selected' : '' ?> value="DG Khan">DG Khan</option> 
+                            <option <?= ($apply->preferred_test_location === 'Hyderabad') ? 'selected' : '' ?> value="Hyderabad">Hyderabad</option>
+                            <option <?= ($apply->preferred_test_location === 'Multan') ? 'selected' : '' ?> value="Multan">Multan</option>
+                            <option <?= ($apply->preferred_test_location === 'Bahawalpur') ? 'selected' : '' ?> value="Bahawalpur">Bahawalpur</option>
+                            <option <?= ($apply->preferred_test_location === 'Quetta') ? 'selected' : '' ?> value="Quetta">Quetta</option>
+                            <option <?= ($apply->preferred_test_location === 'Skurdu') ? 'selected' : '' ?> value="Skurdu">Skurdu</option>
+                            <option <?= ($apply->preferred_test_location === 'Muzaffarabad') ? 'selected' : '' ?> value="Muzaffarabad">Muzaffarabad</option>
+                            <option <?= ($apply->preferred_test_location === 'Rawal Akot') ? 'selected' : '' ?> value="Rawal Akot">Rawal Akot</option> 
+                            <option <?= ($apply->preferred_test_location === 'Mirpur') ? 'selected' : '' ?> value="Mirpur">Mirpur</option>
+                            <option <?= ($apply->preferred_test_location === 'Loralai') ? 'selected' : '' ?> value="Loralai">Loralai</option>
+                            <option <?= ($apply->preferred_test_location === 'Sargodha') ? 'selected' : '' ?> value="Sargodha">Sargodha</option>
+                            <option <?= ($apply->preferred_test_location === 'D.I Khan') ? 'selected' : '' ?> value="D.I Khan">D.I Khan</option>
+                            <option <?= ($apply->preferred_test_location === 'Larkana') ? 'selected' : '' ?> value="Larkana">Larkana</option>
+                            <option <?= ($apply->preferred_test_location === 'Faisalabad') ? 'selected' : '' ?> value="Faisalabad">Faisalabad</option>
+                            <option <?= ($apply->preferred_test_location === 'Gujranwala') ? 'selected' : '' ?> value="Gujranwala">Gujranwala</option>
+                            <option <?= ($apply->preferred_test_location === 'Rahim Yar Khan') ? 'selected' : '' ?> value="Rahim Yar Khan">Rahim Yar Khan</option>
+                            <option <?= ($apply->preferred_test_location === 'Abbottabad') ? 'selected' : '' ?> value="Abbottabad">Abbottabad</option>
+                            <option <?= ($apply->preferred_test_location === 'Jhelum') ? 'selected' : '' ?> value="Jhelum">Jhelum</option>
+                            <option <?= ($apply->preferred_test_location === 'Gilgit') ? 'selected' : '' ?> value="Gilgit">Gilgit</option>
+                            <option <?= ($apply->preferred_test_location === 'Chakwal') ? 'selected' : '' ?> value="Chakwal">Chakwal</option>
+                            <option <?= ($apply->preferred_test_location === 'Sahiwal') ? 'selected' : '' ?> value="Sahiwal">Sahiwal</option>
+                            <option <?= ($apply->preferred_test_location === 'Mardan') ? 'selected' : '' ?> value="Mardan">Mardan</option>
+                            <option <?= ($apply->preferred_test_location === 'Gwadar') ? 'selected' : '' ?> value="Gwadar">Gwadar</option>
+                            <option <?= ($apply->preferred_test_location === 'Sialkot') ? 'selected' : '' ?> value="Sialkot">Sialkot</option>  
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a test location.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="intermediate_studies">Intermediate Studies</label>
+                        <input type="text" class="form-control rounded" id="intermediate_studies"
+                            name="intermediate_studies" placeholder="Intermediate Studies" value="{{ $apply->intermediate_studies }}">
+                        <div class="invalid-feedback">
+                            Please make sure your intermediate studies is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="residential_address">Residential Address</label>
+                        <input type="text" class="form-control rounded" id="residential_address"
+                            name="residential_address" placeholder="Residential Address" value="{{ $apply->residential_address }}">
+                        <div class="invalid-feedback">
+                            Please make sure your residential address is correct.
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_name">Relatives Name</label>
+                        <input type="text" class="form-control rounded" id="relatives_name"
+                            name="relatives_name" placeholder="Relatives Name" value="{{ $apply->relatives_name }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives name is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_email">Relatives Email</label>
+                        <input type="text" class="form-control rounded" id="relatives_email"
+                            name="relatives_email" placeholder="Relatives Email" value="{{ $apply->relatives_email }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives email is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_contact">Relatives Contact</label>
+                        <input type="text" class="form-control rounded" id="relatives_contact"
+                            name="relatives_contact" placeholder="Relatives Contact" value="{{ $apply->relatives_contact }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives contact is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="relatives_address">Relatives Address</label>
+                        <input type="text" class="form-control rounded" id="relatives_address"
+                            name="relatives_address" placeholder="Relatives Address" value="{{ $apply->relatives_address }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives address is correct.
+                        </div>
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="madrasa_name">Madrasa Name</label>
+                        <input type="text" class="form-control rounded" id="madrasa_name"
+                            name="madrasa_name" placeholder="Madrasa Name" value="{{ $apply->madrasa_name }}">
+                        <div class="invalid-feedback">
+                            Please make sure your madrasa name is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="madrasa_address">Madrasa Address</label>
+                        <input type="text" class="form-control rounded" id="madrasa_address"
+                            name="madrasa_address" placeholder="Madrasa Address" value="{{ $apply->madrasa_address }}">
+                        <div class="invalid-feedback">
+                            Please make sure your madrasa address is correct.
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <hr>
                 <h5 class="card-title">College Information</h5>
                 <hr>
@@ -230,7 +397,7 @@
                 <hr>
                 <h5 class="card-title">References</h5>
                 <hr>
-                <div class="label">
+                <!-- <div class="label">
                     <span class="font-weight-bold">Please give your teacher or neighbor reference which are not your
                         relatives </span>
                 </div>
@@ -283,7 +450,7 @@
                             Please enter a address.
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="label">
                     <span class="font-weight-bold">If the above information is incorrect, the form will be declined</span>
                 </div>
@@ -362,7 +529,7 @@
                             value="{{ $apply->whatsapp_number }}" minlength="11" maxlength="13"required>
                     </div>
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="goals">Short & Long Term Goals and how you will pay back/serve Dalda
                             Foundation after completing your degree ? <span class="required-class">*</span></label>
@@ -395,7 +562,7 @@
                             Please enter valid input.
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-row">
                     <div class="form-group form-check col-md-6">
                         <label for="contact">Are you interested in achieving international
@@ -450,7 +617,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="contact">Are you ready to take English ability test such
                             as IELTS/TOEFL/PTE/PVT/ITEP/DUOLINGO ? <span class="required-class">*</span></label><br>
@@ -486,7 +653,7 @@
                             maxlength="250">{{ $apply->share_any }}</textarea>
 
                     </div>
-                </div>
+                </div> -->
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Student Photo <span class="required-class">*</span></label>
