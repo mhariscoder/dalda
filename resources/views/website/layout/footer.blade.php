@@ -84,7 +84,7 @@
 ">
         <div class="column">
             <div class="detail">
-                <p>Powered by <strong><a href="https://ideabox.technology/" alt="ideabox" target="_blank" style="text-decoration:none">Ideabox</a></strong></p>
+                <!--<p>Powered by <strong><a href="https://ideabox.technology/" alt="ideabox" target="_blank" style="text-decoration:none">Ideabox</a></strong></p>-->
             </div>
         </div>
     </div>
