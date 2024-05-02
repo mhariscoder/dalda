@@ -438,6 +438,8 @@ Route::namespace('FrontEnd')->group(function () {
             Route::get('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaim');
             Route::post('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaimData');
             Route::get('/claim-for-scholarship-detail/{claimId}', 'ClaimScholarShipController@detailStudentClaim');
+            Route::get('/update-claim-for-scholarship/{claimId}', 'ClaimScholarShipController@updateStudentClaim');
+            Route::post('/update-claim-for-scholarship/{claimId}', 'ClaimScholarShipController@updateStudentClaimData');
             Route::get('/course-offering', 'CourseOfferingController@index');
             Route::get('/eligibility-criteria', 'EligibilityCriteriaController@index');
             Route::get('/exam', 'ExamController@index');

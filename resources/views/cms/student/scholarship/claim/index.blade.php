@@ -157,8 +157,10 @@
                                                     <div class="mb-2 mr-2 badge badge-secondary">Pending</div>
                                                 @elseif ($claim->status == 'rejected')
                                                     <div class="mb-2 mr-2 badge badge-danger">Rejected</div>
+                                                @elseif ($claim->status == 'closed')
+                                                    <div class="mb-2 mr-2 badge badge-danger">Closed</div>
                                                 @else
-                                                <div class="mb-2 mr-2 badge badge-success">Approved</div>
+                                                    <div class="mb-2 mr-2 badge badge-success">Approved</div>
                                                 @endif
                                             </td>
                                             <td>
@@ -170,6 +172,9 @@
                                                         <a href="javascript:void(0);"
                                                            class="btn btn-warning btn-sm ml-1"
                                                            onclick="changeStatus(this,'{{$claim->id}}','rejected')">Rejected</a>
+                                                        <a href="javascript:void(0);"
+                                                           class="btn btn-danger btn-sm ml-1"
+                                                           onclick="changeStatus(this,'{{$claim->id}}','closed')">Closed</a>
                                                     </div>
                                                 @else
                                                     -
