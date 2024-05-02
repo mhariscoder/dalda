@@ -97,6 +97,13 @@
                                                     class="text-info" data-toggle="tooltip" data-placement="bottom"
                                                     title="" data-original-title="View"><i
                                                         class="fas fa-eye  ml-2"></i></a>
+                                                @if ($claim->status === 'pending')
+                                                    <a href="/student/update-claim-for-scholarship/{{$claim->id}}"
+                                                        class="text-warning"
+                                                        data-toggle="tooltip" data-placement="bottom" title=""
+                                                        data-original-title="Update"> <i
+                                                            class="fas fa-pen-square  ml-2 "></i> </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
