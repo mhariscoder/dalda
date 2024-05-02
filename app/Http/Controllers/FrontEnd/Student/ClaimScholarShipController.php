@@ -49,6 +49,9 @@ class ClaimScholarShipController extends Controller
 
     public function addStudentClaimData()
     {
+        $findClaimForm = ClaimScholarShip::query()->where('student_id', auth()->user()->student_id)->first();
+        if ($findClaimForm) return response()->json(['error' => "Student has already claimed for the scholorship!"], 422);
+
         $studentData = array();
         $user = Auth::user();
         if (empty($user->student_id)) {
