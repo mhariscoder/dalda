@@ -49,10 +49,10 @@
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="fullname">Full Name</label>
+                    <label for="fullname">Student Name</label>
                     <input type="text" class="form-control rounded allowAlphabetOnly"
                            name="fullname" id="fullname_id"
-                           placeholder="Student Full Name"
+                           placeholder="Student Name"
                            value="{{ old('fullname') }}" readonly>
                 </div>
                 <div class="form-group col-md-6">
@@ -408,6 +408,10 @@
             </div>
 
             <div class="form-row">
+                
+            </div>
+
+            <!-- <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="relatives_name">Relatives Name</label>
                     <input type="text" class="form-control rounded" id="relatives_name"
@@ -440,10 +444,10 @@
                         Please make sure your relatives address is correct.
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <!-- <div class="form-group col-md-6">
                     <label for="your_contribution">What role you will play for Dalda
                         Foundation Community ? <span
                                 class="required-class">*</span></label>
@@ -455,7 +459,16 @@
                                 Please enter valid input.
                             </div>
 
+                </div> -->
+                <div class="form-group col-md-6">
+                    <label for="relatives_detail">Relatives Detail</label>
+                    <input type="text" class="form-control rounded" id="relatives_detail"
+                        name="relatives_detail" placeholder="Relatives Details" value="{{ old('relatives_detail') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives detail is correct.
+                    </div>
                 </div>
+                
                 <div class="form-group col-md-6">
                     <label for="contact">Are you interested in achieving international
                         scholarships with the help of Dalda
@@ -777,11 +790,11 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="fullname">Full Name <span
+                                                    <label for="fullname">Student Name <span
                                                                 class="required-class">*</span></label>
                                                     <input type="text" class="form-control rounded allowAlphabetOnly"
                                                            name="fullname" id="fullname_id"
-                                                           placeholder="Student Full Name"
+                                                           placeholder="Student Name"
                                                            value="{{ old('fullname') }}" readonly>
                                                 </div>
                                             </div>

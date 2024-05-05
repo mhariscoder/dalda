@@ -123,10 +123,11 @@ class ApplyScholarShipController extends Controller
             'preferred_test_location' => 'required|max:250',
             'intermediate_studies' => 'required|max:250',
             'residential_address' => 'required|max:250',
-            'relatives_name' => 'required|max:250',
-            'relatives_email' => 'required|max:250',
-            'relatives_contact' => 'required|max:250',
-            'relatives_address' => 'required|max:250',
+            // 'relatives_name' => 'required|max:250',
+            // 'relatives_email' => 'required|max:250',
+            // 'relatives_contact' => 'required|max:250',
+            // 'relatives_address' => 'required|max:250',
+            'relatives_detail' => 'requried|max:250',
             'madrasa_name' => 'sometimes|nullable|max:250|max:250',
             'madrasa_address' => 'sometimes|nullable|max:250'
         ]);

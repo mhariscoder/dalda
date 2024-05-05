@@ -33,6 +33,20 @@
             <div class="row">
                 <div class="col-md-12 form-errors"></div>
             </div>
+            
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="scholarship_as_per_education">Please select a scholarship according to your education<span class="required-class">*</span></label>
+                    <select class="form-control rounded allowAlphabetOnly" name="scholarship_as_per_education" required>
+                        <option selected disabled value=""> -- Select -- </option>
+                        <option value="Scholorship for immediate studies">Scholorship for immediate studies</option>
+                        <option value="Scholorship for vocational option">Scholorship for vocational option</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select your education.
+                    </div>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="year">Year<span class="required-class">*</span></label>
@@ -55,10 +69,19 @@
                         Invalid matric board input.
                     </div>
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="matriculation_year">Matriculation Year <span class="required-class">*</span></label>
+                    <input type="text" class="form-control" id="matriculation_year" name="matriculation_year"
+                        placeholder="Enter Matriculation Year" value="{{ old('matriculation_year') }}" required maxlength="100">
+                    <div class="invalid-feedback">
+                        Invalid matriculation year input.
+                    </div>
+                </div>
+                
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="group">Group <span class="required-class">*</span></label>
+                    <label for="group">Matric Group <span class="required-class">*</span></label>
                     <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
                         value="{{ old('group') }}" required maxlength="100">
                     <div class="invalid-feedback">
@@ -106,7 +129,7 @@
                         IBAN number </label>
                     <input type="text" class="form-control rounded" id="beneficary_iban_number"
                         name="beneficary_iban_number" placeholder="Enter Your Beneficiary's 24 Digits IBAN number"
-                        value="{{ old('beneficary_iban_number') }}" minlength="24" maxlength="24" required>
+                        value="{{ old('beneficary_iban_number') }}"  minlength="24" maxlength="24" required>
                     <div class="invalid-feedback">
                         Please make sure IBAN number is correct.
                     </div>
@@ -127,22 +150,161 @@
                     <label for="beneficary_cnic">Your Beneficiary's CNIC Number </label>
                     <input type="text" class="form-control rounded allowNumberOnly" id="beneficary_cnic"
                         name="beneficary_cnic" placeholder="Enter Your Beneficiary's CNIC Number"
-                        value="{{ old('beneficary_cnic') }}" minlength="13" maxlength="13" required>
+                        value="{{ old('beneficary_cnic') }}" minlength="13" maxlength="13"  required>
                     <div class="invalid-feedback">
                         Please make sure beneficiary CNIC number is correct.
                     </div>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
-                            class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="beneficary_bank_address"
-                        name="beneficary_bank_address" placeholder="Enter Your Beneficiary's Bank Address"
-                        value="{{ old('beneficary_bank_address') }}" required>
+                    <label> If you've acheived any position of board level, please provide detail </label>
+                    <input type="text" class="form-control rounded " id="position_board_detail"
+                        name="position_board_detail" placeholder="Enter Position Board Details"
+                        value="{{ old('position_board_detail') }}"  required>
                     <div class="invalid-feedback">
-                        Please enter a bank address.
+                        Please make sure position board details is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label What do you want to be in future? </label>
+                    <input type="text" class="form-control rounded" id="career_path_details"
+                        name="career_path_details" placeholder="Enter Career Path Details"
+                        value="{{ old('career_path_details') }}"  required>
+                    <div class="invalid-feedback">
+                        Please make sure career path details is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="preferred_test_location">Preferred Test Location<span class="required-class">*</span></label>
+                    <select class="form-control rounded" name="preferred_test_location" required>
+                        <option selected disabled value=""> -- Select -- </option>
+                        Lahore
+                        <option value="Sukkur">Sukkur</option>
+                        <option value="Peshawar">Peshawar</option>
+                        <option value="Rawalpindi">Rawalpindi</option>
+                        <option value="Karachi">Karachi</option>
+                        <option value="Swat">Swat</option>
+                        <option value="DG Khan">DG Khan</option> 
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Multan">Multan</option>
+                        <option value="Bahawalpur">Bahawalpur</option>
+                        <option value="Quetta">Quetta</option>
+                        <option value="Skurdu">Skurdu</option>
+                        <option value="Muzaffarabad">Muzaffarabad</option>
+                        <option value="Rawal Akot">Rawal Akot</option> 
+                        <option value="Mirpur">Mirpur</option>
+                        <option value="Loralai">Loralai</option>
+                        <option value="Sargodha">Sargodha</option>
+                        <option value="D.I Khan">D.I Khan</option>
+                        <option value="Larkana">Larkana</option>
+                        <option value="Faisalabad">Faisalabad</option>
+                        <option value="Gujranwala">Gujranwala</option>
+                        <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                        <option value="Abbottabad">Abbottabad</option>
+                        <option value="Jhelum">Jhelum</option>
+                        <option value="Gilgit">Gilgit</option>
+                        <option value="Chakwal">Chakwal</option>
+                        <option value="Sahiwal">Sahiwal</option>
+                        <option value="Mardan">Mardan</option>
+                        <option value="Gwadar">Gwadar</option>
+                        <option value="Sialkot">Sialkot</option>  
+                        <option value="Lahore">Lahore</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a test location.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="intermediate_studies">What subject did you choose for your intermediate studies</label>
+                    <input type="text" class="form-control rounded" id="intermediate_studies"
+                        name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ old('intermediate_studies') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your intermediate studies is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="residential_address">Student Address</label>
+                    <input type="text" class="form-control rounded" id="residential_address"
+                        name="residential_address" placeholder="Residential Address" value="{{ old('residential_address') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your residential address is correct.
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="relatives_detail">Relatives Detail</label>
+                    <input type="text" class="form-control rounded" id="relatives_detail"
+                        name="relatives_detail" placeholder="Relatives Details" value="{{ old('relatives_detail') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives detail is correct.
                     </div>
                 </div>
             </div>
+
+            <!-- <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_name">Relatives Name</label>
+                    <input type="text" class="form-control rounded" id="relatives_name"
+                        name="relatives_name" placeholder="Relatives Name" value="{{ old('relatives_name') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives name is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_email">Relatives Email</label>
+                    <input type="text" class="form-control rounded" id="relatives_email"
+                        name="relatives_email" placeholder="Relatives Email" value="{{ old('relatives_email') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives email is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_contact">Relatives Contact</label>
+                    <input type="text" class="form-control rounded" id="relatives_contact"
+                        name="relatives_contact" placeholder="Relatives Contact" value="{{ old('relatives_contact') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives contact is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_address">Relatives Address</label>
+                    <input type="text" class="form-control rounded" id="relatives_address"
+                        name="relatives_address" placeholder="Relatives Address" value="{{ old('relatives_address') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your relatives address is correct.
+                    </div>
+                </div>
+            </div> -->
+
+            <hr>
+                <h5 class="card-title">
+                    If you're studing in any madrasa/religious education books, please provide name and complete address
+                </h5>
+            <hr>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="madrasa_name">Name</label>
+                    <input type="text" class="form-control rounded" id="madrasa_name"
+                        name="madrasa_name" placeholder="Name" value="{{ old('madrasa_name') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your name is correct.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="madrasa_address">Address</label>
+                    <input type="text" class="form-control rounded" id="madrasa_address"
+                        name="madrasa_address" placeholder="Address" value="{{ old('madrasa_address') }}">
+                    <div class="invalid-feedback">
+                        Please make sure your address is correct.
+                    </div>
+                </div>
+            </div>
+
             <hr>
             <h5 class="card-title">College Information</h5>
             <hr>
@@ -170,7 +332,7 @@
                             class="required-class">*</span></label>
                     <input type="text" class="form-control rounded allowNumberOnly" id="telephone_of_college"
                         name="telephone_of_college" placeholder="Enter Telephone Number Of College"
-                        value="{{ old('telephone_of_college') }}"  minlength="11" maxlength="13" required>
+                        value="{{ old('telephone_of_college') }}" minlength="11" maxlength="13" required>
                     <div class="invalid-feedback">
                         Please enter telephone number of college.
                     </div>
@@ -185,84 +347,26 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="principal_number">Principal Number<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded allowNumberOnly" id="principal_number" name="principal_number"
-                        placeholder="Enter Principal Number" value="{{ old('principal_number') }}" minlength="11" maxlength="13" required>
+                    <input type="text" class="form-control rounded allowNumberOnly" id="principal_number"
+                        name="principal_number" placeholder="Enter Principal Number"
+                        value="{{ old('principal_number') }}"  minlength="11" maxlength="13" required>
                     <div class="invalid-feedback">
                         Please enter principal number.
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="college_email">College Email Address<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="college_email" name="college_email"
+                    <input type="email" class="form-control rounded" id="college_email" name="college_email"
                         placeholder="Enter College Email" value="{{ old('college_email') }}" required>
-                    <div class="invalid-feedback">
-                        Please enter college email address.
+                    <div class="invalid-feedback" >
+                        Please enter valid email address.
                     </div>
                 </div>
             </div>
             <hr>
             <h5 class="card-title">References</h5>
             <hr>
-            <div class="label">
-                <span class="font-weight-bold">Please give your teacher or neighbor reference which are not your
-                    relatives </span>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="password">Name<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="teacher_name1" name="teacher_name1"
-                        placeholder="Enter Name" value="{{ old('teacher_name1') }}" required>
-                    <div class="invalid-feedback">
-                        Please enter a name.
-                    </div>
 
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password">Cell No<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded allowNumberOnly" id="teach_cell_no1" name="teach_cell_no1"
-                        placeholder="Enter Cell No" value="{{ old('teach_cell_no1') }}" minlength="11" maxlength="13" required>
-                    <div class="invalid-feedback">
-                        Please enter a cell no.
-                    </div>
-
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password">Address<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="teacher_address1" name="teacher_address1"
-                        placeholder="Enter Address" value="{{ old('teacher_address1') }}" required>
-                    <div class="invalid-feedback">
-                        Please enter a address.
-                    </div>
-
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password">Name<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="teacher_name2" name="teacher_name2"
-                        placeholder="Enter Name" value="{{ old('teacher_name2') }}" required>
-                    <div class="invalid-feedback">
-                        Please enter a name.
-                    </div>
-
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password">Cell No<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded allowNumberOnly" id="teach_cell_no2" name="teach_cell_no2"
-                        placeholder="Enter Cell No" value="{{ old('teach_cell_no2') }}" minlength="11" maxlength="13" required>
-                    <div class="invalid-feedback">
-                        Please enter a cell no.
-                    </div>
-
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="password">Address<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded" id="teacher_address2" name="teacher_address2"
-                        placeholder="Enter Address" value="{{ old('teacher_address2') }}" required>
-                    <div class="invalid-feedback">
-                        Please enter a address.
-                    </div>
-
-                </div>
-            </div>
             <div class="label">
                 <span class="font-weight-bold">If the above information is incorrect, the form will be declined</span>
             </div>
@@ -271,17 +375,18 @@
                 <div class="form-group col-md-6">
                     <label for="password">How many family members do you have?<span
                             class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded allowNumberOnly" id="family_members" name="family_members"
-                        placeholder="How many family members do you have?" value="{{ old('family_members') }}"
-                        required>
+                    <input type="text" class="form-control rounded allowNumberOnly" id="family_members"
+                        name="family_members" placeholder="How many family members do you have?"
+                        value="{{ old('family_members') }}" required>
                     <div class="invalid-feedback">
                         Please enter a valid input.
                     </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="password">How much monthly income?<span class="required-class">*</span></label>
-                    <input type="text" class="form-control rounded allowNumberOnly" id="monthly_income" name="monthly_income"
-                        placeholder="How much monthly income?" value="{{ old('monthly_income') }}" required>
+                    <input type="text" class="form-control rounded allowNumberOnly" id="monthly_income"
+                        name="monthly_income" placeholder="How much monthly income?"
+                        value="{{ old('monthly_income') }}" required>
                     <div class="invalid-feedback">
                         Please enter a valid input.
                     </div>
@@ -331,7 +436,7 @@
                     <label for="mobile_number">Your Mobile Number <span class="required-class">*</span></label>
                     <input type="text" class="form-control rounded allowNumberOnly" id="mobile_number"
                         name="mobile_number" placeholder="Enter Your Mobile Number"
-                        value="{{ old('mobile_number') }}" minlength="11" maxlength="13" required>
+                        value="{{ old('mobile_number') }}" minlength="11" maxlength="13"  required>
                     <div class="invalid-feedback">
                         Please enter your mobile number.
                     </div>
@@ -341,40 +446,6 @@
                     <input type="text" class="form-control rounded allowNumberOnly" id="whatsapp_number"
                         name="whatsapp_number" placeholder="Enter Your WhatsApp Number"
                         value="{{ old('whatsapp_number') }}" minlength="11" maxlength="13">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="goals">Short & Long Term Goals and how you will pay back/serve Dalda
-                        Foundation after completing your degree ? <span class="required-class">*</span></label>
-                    <textarea name="goals" class="form-control" placeholder="Enter Short & Long Term Goals" rows="2"
-                        maxlength="250" required>{{ old('goals') }}</textarea>
-                    <div class="invalid-feedback">
-                        Please enter valid input.
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="suggestion">Your Suggestions, how we together can develop Dalda Foundation Community to
-                        serve
-                        mankind ? <span class="required-class">*</span></label>
-                    <textarea name="suggestion" class="form-control" placeholder="Enter Your Suggestions" rows="2"
-                        maxlength="250" required>{{ old('suggestion') }}</textarea>
-                    <div class="invalid-feedback">
-                        Please enter valid input.
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="your_contribution">What role you will play for Dalda
-                        Foundation Community ? <span class="required-class">*</span></label>
-                    <textarea name="your_contribution" class="form-control" placeholder="Enter Your Role For Dalda Foundation"
-                        rows="2" maxlength="250" required>{{ old('your_contribution') }}</textarea>
-                    <div class="invalid-feedback">
-                        Please enter valid input.
-                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -432,42 +503,6 @@
                         <label class="custom-control-label checkbox-primary outline" for="standarized_test_may">May
                             be</label>
                     </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="contact">Are you ready to take English ability test such
-                        as IELTS/TOEFL/PTE/PVT/ITEP/DUOLINGO ? <span class="required-class">*</span></label><br>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="english_ability_test" class="custom-control-input"
-                            id="english_ability_test_yes" value="yes"
-                            {{ old('english_ability_test') == 'yes' ? 'checked' : '' }} required>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="english_ability_test_yes">Yes</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="english_ability_test" class="custom-control-input"
-                            id="english_ability_test_no" value="no"
-                            {{ old('english_ability_test') == 'no' ? 'checked' : '' }} required>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="english_ability_test_no">No</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="english_ability_test" class="custom-control-input"
-                            id="english_ability_test_may" value="maybe"
-                            {{ old('english_ability_test') == 'maybe' ? 'checked' : '' }} required>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="english_ability_test_may">May be</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="share_any">Anything you want to share with Dalda
-                        Foundation Trust ?</label>
-                    <textarea name="share_any" class="form-control" placeholder="Enter Your Suggestions" rows="2"
-                        maxlength="250">{{ old('share_any') }}</textarea>
-
                 </div>
             </div>
             <div class="form-row">
@@ -530,500 +565,12 @@
                     <div class="parent_cnic_photo_error text-dark">Supported formats are jpg, jpeg and pdf</div>
                 </div>
             </div>
+
             <input type="button" class="btn btn-primary float-right"
             onclick="submitFormData()" value="Save"/>
         </form>
-
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-        </script>
     </div>
 </div>
-    {{-- <main class="content">
-        <div class="container-fluid site-width">
-            <!-- START: Card Data-->
-            <div class="row">
-                <div class="col-12 mt-3">
-                    <div class="card">
-                        <div class="card-header  justify-content-between align-items-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="card-title">Apply For Scholarship</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="/student/apply-for-scholarship" class="btn btn-primary float-right">←
-                                        Back</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-body">
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>{{ Session::get('success') }}</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form id="applyForm">
-                                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                            <div class="row">
-                                                <div class="col-md-12 form-errors"></div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="year">Year <span
-                                                                class="required-class">*</span></label>
-                                                    <select class="form-control" name="year">
-                                                        <option value="">Select</option>
-                                                        @foreach($years as $val)
-                                                            <option value="{{$val}}" {{old('year') === $val ? "selected" : ""}}>{{$val}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="matric_board">Matric Board <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="matric_board" class="form-control rounded allowAlphabetOnly"
-                                                           id="matric_board"
-                                                           name="matric_board" placeholder="Enter Matric Board"
-                                                           value="{{ old('matric_board') }}" maxlength="100">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="group">Group <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded"
-                                                           id="group"
-                                                           name="group" placeholder="Enter Group"
-                                                           value="{{ old('group') }}" maxlength="100">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="marks_in_matric">Marks in Matric (Write in this format: 990/1050) <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowSlash marksFormat"
-                                                           id="marks_in_matric" name="marks_in_matric"
-                                                           placeholder="Enter Marks in Matric"
-                                                           value="{{ old('marks_in_matric') }}" maxlength="9">
-                                                    <span class="text-danger font-weight-light error"></span>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="current_city">Your Current City Name <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowAlphabetOnly"
-                                                           id="current_city" name="current_city"
-                                                           placeholder="Enter Current City Name"
-                                                           value="{{ old('current_city') }}" maxlength="55">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="beneficary_name">Your Beneficiary Name <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowAlphabetOnly"
-                                                           id="beneficary_name" name="beneficary_name"
-                                                           placeholder="Enter Your Beneficiary Name"
-                                                           value="{{ old('beneficary_name') }}" maxlength="55">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="beneficary_iban_number">Your Beneficiary's 24 Digits
-                                                        IBAN number <span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded"
-                                                           id="beneficary_iban_number" name="beneficary_iban_number"
-                                                           placeholder="Enter Your Beneficiary's 24 Digits IBAN number"
-                                                           value="{{ old('beneficary_iban_number') }}" maxlength="34">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded"
-                                                           id="beneficary_bank_address" name="beneficary_bank_address"
-                                                           placeholder="Enter Your Beneficiary's CNIC Number"
-                                                           value="{{ old('beneficary_bank_address') }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="beneficary_bank">Your Beneficiary's Bank Name <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded"
-                                                           id="beneficary_bank" name="beneficary_bank"
-                                                           placeholder="Enter Your Beneficiary Bank Name"
-                                                           value="{{ old('beneficary_bank') }}" maxlength="100">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="beneficary_cnic">Your Beneficiary's CNIC Number <span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowNumberOnly"
-                                                           id="beneficary_cnic" name="beneficary_cnic"
-                                                           placeholder="Enter Your Beneficiary's CNIC Number"
-                                                           value="{{ old('beneficary_cnic') }}" maxlength="14">
-                                                </div>
-                                            </div>
-
-                                            <h4>College Information</h4>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="name_of_college">Name Of College<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="name_of_college"
-                                                           name="name_of_college" placeholder="Enter Name Of College"
-                                                           value="{{ old('name_of_college') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="postal_address_of_college">Postal Address Of College<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="postal_address_of_college"
-                                                           name="postal_address_of_college" placeholder="Enter Postal Address Of College"
-                                                           value="{{ old('postal_address_of_college') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="telephone_of_college">Telephone Number Of College<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="telephone_of_college"
-                                                           name="telephone_of_college" placeholder="Enter Telephone Number Of College"
-                                                           value="{{ old('telephone_of_college') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="principal_name">Principal Name<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="principal_name"
-                                                           name="principal_name" placeholder="Enter Principal Name"
-                                                           value="{{ old('principal_name') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="principal_number">Principal Number<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="principal_number"
-                                                           name="principal_number" placeholder="Enter Principal Number"
-                                                           value="{{ old('principal_number') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="college_email">College Email Address<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="college_email"
-                                                           name="college_email" placeholder="Enter College Email"
-                                                           value="{{ old('college_email') }}">
-                                                </div>
-                                            </div>
-
-                                            <h4>References</h4>
-
-                                            <div class="label">
-                                                <span class="font-weight-bold">Please give your teacher or neighbor reference which are not your relatives </span>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Name<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teacher_name1"
-                                                           name="teacher_name1" placeholder="Enter Name"
-                                                           value="{{ old('teacher_name1') }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Cell No<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teach_cell_no1"
-                                                           name="teach_cell_no1" placeholder="Enter Cell No"
-                                                           value="{{ old('teach_cell_no1') }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Address<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teacher_address1"
-                                                           name="teacher_address1" placeholder="Enter Address"
-                                                           value="{{ old('teacher_address1') }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Name<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teacher_name2"
-                                                           name="teacher_name2" placeholder="Enter Name"
-                                                           value="{{ old('teacher_name2') }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Cell No<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teach_cell_no2"
-                                                           name="teach_cell_no2" placeholder="Enter Cell No"
-                                                           value="{{ old('teach_cell_no2') }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="password">Address<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="teacher_address2"
-                                                           name="teacher_address2" placeholder="Enter Address"
-                                                           value="{{ old('teacher_address2') }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="label">
-                                                <span class="font-weight-bold">If the above information is incorrect from the form will be declined</span>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="password">How many family members do you have?<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="family_members"
-                                                           name="family_members" placeholder="How many family members do you have?"
-                                                           value="{{ old('family_members') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="password">How much monthly income?<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="monthly_income"
-                                                           name="monthly_income" placeholder="How much monthly income?"
-                                                           value="{{ old('monthly_income') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="password">How much sqr yards of your home/flat?<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="home_in_sqr_yards"
-                                                           name="home_in_sqr_yards" placeholder="How much sqr yards of your home/flat?"
-                                                           value="{{ old('home_in_sqr_yards') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="password">What is source of income of your father/guardian?<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="source_of_income"
-                                                           name="source_of_income" placeholder="What is source of income of your father/guardian?"
-                                                           value="{{ old('source_of_income') }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="password">Have you ever received any scholarships?<span class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded" id="any_scholarship"
-                                                           name="any_scholarship" placeholder="Have you ever received any scholarships?"
-                                                           value="{{ old('any_scholarship') }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="cnic_number">Your CNIC Number / Form 'B' <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowNumberOnly"
-                                                           id="cnic_number" name="cnic_number"
-                                                           placeholder="Enter Your CNIC Number / Form 'B'"
-                                                           value="{{ old('cnic_number') }}" maxlength="14">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="mobile_number">Your Mobile Number <span
-                                                                class="required-class">*</span></label>
-                                                    <input type="text" class="form-control rounded allowNumberOnly"
-                                                           id="mobile_number" name="mobile_number"
-                                                           placeholder="Enter Your Mobile Number"
-                                                           value="{{ old('mobile_number') }}" maxlength="13">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="whatsapp_number">Your WhatsApp Number </label>
-                                                    <input type="text" class="form-control rounded allowNumberOnly"
-                                                           id="whatsapp_number" name="whatsapp_number"
-                                                           placeholder="Enter Your WhatsApp Number"
-                                                           value="{{ old('whatsapp_number') }}" maxlength="13">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="goals">Short & Long Term Goals and how you will pay
-                                                        back/serve Dalda
-                                                        Foundation after completing your degree ? <span
-                                                                class="required-class">*</span></label>
-                                                    <textarea name="goals" class="form-control"
-                                                              placeholder="Enter Short & Long Term Goals"
-                                                              rows="2" maxlength="250">{{ old('goals') }}</textarea>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="suggestion">Your Suggestions, how we together can
-                                                        develop Dalda Foundation Community to serve
-                                                        mankind ? <span class="required-class">*</span></label>
-                                                    <textarea name="suggestion" class="form-control"
-                                                              placeholder="Enter Your Suggestions"
-                                                              rows="2"
-                                                              maxlength="250">{{ old('suggestion') }}</textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="your_contribution">What role you will play for Dalda
-                                                        Foundation Community ? <span
-                                                                class="required-class">*</span></label>
-                                                    <textarea name="your_contribution" class="form-control"
-                                                              placeholder="Enter Your Role For Dalda Foundation"
-                                                              rows="2"
-                                                              maxlength="250">{{ old('your_contribution') }}</textarea>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="contact">Are you interested in achieving international
-                                                        scholarships with the help of Dalda
-                                                        Foundation Trust ? <span
-                                                                class="required-class">*</span></label><br>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="international_scolarship"
-                                                               class="custom-control-input"
-                                                               id="international_scolarship_yes"
-                                                               value="yes" {{ old("international_scolarship") == 'yes' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="international_scolarship_yes">Yes</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="international_scolarship"
-                                                               class="custom-control-input"
-                                                               id="international_scolarship_no"
-                                                               value="no" {{ old("international_scolarship") == 'no' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="international_scolarship_no">No</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="international_scolarship"
-                                                               class="custom-control-input"
-                                                               id="international_scolarship_may"
-                                                               value="maybe" {{ old("international_scolarship") == 'maybe' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="international_scolarship_may">May be</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="cnic">Are you ready to take standardized tests such as
-                                                        GRE/GMAT/LSAT ? <span
-                                                                class="required-class">*</span></label>
-                                                    <br>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="standarized_test"
-                                                               id="standarized_test_yes"
-                                                               class="custom-control-input" id="standarized_test_yes"
-                                                               value="yes" {{ old("standarized_test") == 'yes' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="standarized_test_yes">Yes</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="standarized_test"
-                                                               id="standarized_test_no"
-                                                               class="custom-control-input" id="standarized_test_no"
-                                                               value="no" {{ old("standarized_test") == 'no' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="standarized_test_no">No</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="standarized_test"
-                                                               id="standarized_test_may"
-                                                               class="custom-control-input" id="standarized_test_may"
-                                                               value="maybe" {{ old("standarized_test") == 'maybe' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="standarized_test_may">May be</label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <label for="contact">Are you ready to take English ability test such
-                                                        as IELTS/TOEFL/PTE/PVT/ITEP/DUOLINGO ? <span
-                                                                class="required-class">*</span></label><br>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="english_ability_test"
-                                                               class="custom-control-input"
-                                                               id="english_ability_test_yes"
-                                                               value="yes" {{ old("english_ability_test") == 'yes' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="english_ability_test_yes">Yes</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="english_ability_test"
-                                                               class="custom-control-input"
-                                                               id="english_ability_test_no"
-                                                               value="no" {{ old("english_ability_test") == 'no' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="english_ability_test_no">No</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="english_ability_test"
-                                                               class="custom-control-input"
-                                                               id="english_ability_test_may"
-                                                               value="maybe" {{ old("english_ability_test") == 'maybe' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label checkbox-primary outline"
-                                                               for="english_ability_test_may">May be</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="share_any">Anything you want to share with Dalda
-                                                        Foundation Trust ?</label>
-                                                    <textarea name="share_any" class="form-control"
-                                                              placeholder="Enter Your Suggestions"
-                                                              rows="2" maxlength="250">{{ old('share_any') }}</textarea>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label>Student Photo <span class="required-class">*</span></label>
-                                                    <div class="input-group">
-                                                        <input type="file" id="student_photo" name="student_photo"
-                                                               class="form-control"
-                                                               accept=".jpg, .jpeg, .png"
-                                                               value="{{ old('student_photo') }}">
-                                                    </div>
-                                                    <div class="student_photo_error text-dark">Supported formats are
-                                                        jpg, jpeg and png
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label>Matric Mark Sheet Photo <span class="required-class">*</span></label>
-                                                    <div class="input-group">
-                                                        <input type="file" id="marksheet_photo" name="marksheet_photo"
-                                                               class="form-control"
-                                                               accept=".jpg, .jpeg, .pdf"
-                                                               value="{{ old('marksheet_photo') }}">
-                                                    </div>
-                                                    <div class="marksheet_photo_error text-dark">Supported formats are
-                                                        jpg, jpeg and pdf
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label>Beneficiary CNIC Photo <span class="required-class">*</span></label>
-                                                    <div class="input-group">
-                                                        <input type="file" id="beneficary_cnic_photo"
-                                                               name="beneficary_cnic_photo"
-                                                               class="form-control"
-                                                               accept=".jpg, .jpeg, .pdf"
-                                                               value="{{ old('beneficary_cnic_photo') }}">
-                                                    </div>
-                                                    <div class="beneficary_cnic_photo_error text-dark">Supported formats
-                                                        are jpg, jpeg and pdf
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label>Father/Mother or Guardian CNIC Photo <span
-                                                                class="required-class">*</span></label>
-                                                    <div class="input-group">
-                                                        <input type="file" id="parent_cnic_photo"
-                                                               name="father_mother_or_guardian_cnic_photo"
-                                                               class="form-control"
-                                                               accept=".jpg, .jpeg, .pdf"
-                                                               value="{{ old('father_mother_or_guardian_cnic_photo') }}">
-                                                    </div>
-                                                    <div class="parent_cnic_photo_error text-dark">Supported formats are
-                                                        jpg, jpeg and pdf
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <input type="button" class="btn btn-primary"
-                                                   onclick="submitFormData()" value="Save"/>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- END: Card DATA-->
-        </div>
-    </main> --}}
 @endsection
 
 @push('scripts')

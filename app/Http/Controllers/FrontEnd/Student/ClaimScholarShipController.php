@@ -72,14 +72,14 @@ class ClaimScholarShipController extends Controller
             'beneficary_name' => 'required|max:100',
             'beneficary_iban_number' => 'required|max:34',
             'beneficary_bank' => 'required|max:150',
-            'beneficary_bank_address' => 'required|max:150',
+            // 'beneficary_bank_address' => 'required|max:150',
             'beneficary_cnic' => 'required|digits_between:13,15',
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'goals' => 'required|max:250',
-            'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'goals' => 'required|max:250',
+            // 'suggestion' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
@@ -117,14 +117,14 @@ class ClaimScholarShipController extends Controller
         $studentData['beneficary_iban_number'] = request()->beneficary_iban_number;
         $studentData['beneficary_bank'] = request()->beneficary_bank;
         $studentData['beneficary_cnic'] = request()->beneficary_cnic;
-        $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
+        // $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
         $studentData['cnic_number'] = request()->cnic_number;
         $studentData['mobile_number'] = request()->mobile_number;
         $studentData['whatsapp_number'] = request()->whatsapp_number;
         $studentData['email_address'] = $user->email;
-        $studentData['goals'] = request()->goals;
-        $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['goals'] = request()->goals;
+        // $studentData['suggestion'] = request()->suggestion;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
         $studentData['english_ability_test'] = request()->english_ability_test;
@@ -142,6 +142,18 @@ class ClaimScholarShipController extends Controller
         $bcfive_marksheet = request()->file('bachelor_five_photo');
         $beneficary_cnic = request()->file('beneficary_cnic_photo');
         $parent_cnic = request()->file('father_mother_or_guardian_cnic_photo');
+
+        // new fields
+        $studentData['other_degree_option'] = request()->other_degree_option;
+        $studentData['father_name'] = request()->father_name;
+        $studentData['year'] = request()->year;
+        $studentData['achieved_position'] = request()->achieved_position;
+        $studentData['current_college_institute_university'] = request()->current_college_institute_university;
+        // $studentData['relatives_name'] = request()->relatives_name;
+        // $studentData['relatives_email'] = request()->relatives_email;
+        // $studentData['relatives_contact'] = request()->relatives_contact;
+        // $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['relatives_detail'] = request()->relatives_detail;
 
         if (!empty($student)) {
             $extension = $student->extension();
@@ -333,7 +345,7 @@ class ClaimScholarShipController extends Controller
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
             // 'goals' => 'required|max:250',
             // 'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
@@ -371,14 +383,14 @@ class ClaimScholarShipController extends Controller
         $studentData['beneficary_iban_number'] = request()->beneficary_iban_number;
         $studentData['beneficary_bank'] = request()->beneficary_bank;
         $studentData['beneficary_cnic'] = request()->beneficary_cnic;
-        $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
+        // $studentData['beneficary_bank_address'] = request()->beneficary_bank_address;
         $studentData['cnic_number'] = request()->cnic_number;
         $studentData['mobile_number'] = request()->mobile_number;
         $studentData['whatsapp_number'] = request()->whatsapp_number;
         $studentData['email_address'] = $claim->email_address;
-        $studentData['goals'] = request()->goals;
-        $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['goals'] = request()->goals;
+        // $studentData['suggestion'] = request()->suggestion;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
         $studentData['english_ability_test'] = request()->english_ability_test;

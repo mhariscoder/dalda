@@ -43,7 +43,6 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             'mobile_number' => $row['mobile_number'] ?? null,
             'whatsapp_number' => $row['whatsapp_number'] ?? null,
             'email_address' => $row['email_address'] ?? null,
-            'your_contribution' => $row['your_contribution'] ?? null,
             'international_scolarship' => $row['international_scolarship'] ?? null,
             'standarized_test' => $row['standarized_test'] ?? null,
             'english_ability_test' => $row['english_ability_test'] ?? null,
@@ -65,10 +64,11 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             'year' => $row['year'] ?? null,
             'achieved_position' => $row['achieved_position'] ?? null,
             'current_college_institute_university' => $row['current_college_institute_university'] ?? null,
-            'relatives_name' => $row['relatives_name'] ?? null,
-            'relatives_email' => $row['relatives_email'] ?? null,
-            'relatives_contact' => $row['relatives_contact'] ?? null,
-            'relatives_address' => $row['relatives_address'] ?? null
+            // 'relatives_name' => $row['relatives_name'] ?? null,
+            // 'relatives_email' => $row['relatives_email'] ?? null,
+            // 'relatives_contact' => $row['relatives_contact'] ?? null,
+            // 'relatives_address' => $row['relatives_address'] ?? null,
+            'relatives_detail' => $row['relatives_detail'] ?? null,
         ]);
     }
 
@@ -100,7 +100,6 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             'cnic_number' => 'required|digits_between:13,15',
             'mobile_number' => 'required|digits_between:11,13',
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
-            'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ClaimScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ClaimScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ClaimScholarShip::CHECK_OPTIONS),
@@ -120,10 +119,11 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             'father_name' => 'sometimes|nullable|max:100',
             'achieved_position' => 'sometimes|nullable|max:100',
             'current_college_institute_university' => 'sometimes|nullable|max:150',
-            'relatives_name' => 'sometimes|nullable|max:100',
-            'relatives_email' => 'sometimes|nullable|email|max:100',
-            'relatives_contact' => 'sometimes|nullable|max:15',
-            'relatives_address' => 'sometimes|nullable|max:150'
+            // 'relatives_name' => 'sometimes|nullable|max:100',
+            // 'relatives_email' => 'sometimes|nullable|email|max:100',
+            // 'relatives_contact' => 'sometimes|nullable|max:15',
+            // 'relatives_address' => 'sometimes|nullable|max:150'
+            'relatives_detail' => 'required|max:250',
         ];
     }
 }

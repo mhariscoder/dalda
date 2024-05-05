@@ -962,7 +962,7 @@
                           font-weight: 600;
                         "
                       >
-                        Full Name
+                        Student Name
                       </span>
                         </td>
                     </tr>

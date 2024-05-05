@@ -59,8 +59,8 @@
                         <label for="scholarship_as_per_education">Please select a scholarship according to your education<span class="required-class">*</span></label>
                         <select class="form-control rounded allowAlphabetOnly" name="scholarship_as_per_education" required>
                             <option selected disabled value=""> -- Select -- </option>
-                            <option <?= ($apply->scholarship_as_per_education === 'Professional') ? 'selected' : '' ?> value="Professional ">Professional</option>
-                            <option <?= ($apply->scholarship_as_per_education === 'Technical') ? 'selected' : '' ?> value="Technical">Technical</option>
+                            <option <?= ($apply->scholarship_as_per_education === 'Scholorship for immediate studies') ? 'selected' : '' ?> value="Scholorship for immediate studies ">Professional</option>
+                            <option <?= ($apply->scholarship_as_per_education === 'Scholorship for vocational option') ? 'selected' : '' ?> value="Scholorship for vocational option">Technical</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a student name.
@@ -115,7 +115,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="group">Group <span class="required-class">*</span></label>
+                        <label for="group">Matric Group <span class="required-class">*</span></label>
                         <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
                             value="{{ $apply->group }}" maxlength="100"required>
                         <div class="invalid-feedback">
@@ -204,7 +204,7 @@
 
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="position_board_detail">Position Board Details </label>
+                        <label> If you've acheived any position of board level, please provide detail </label>
                         <input type="text" class="form-control rounded " id="position_board_detail"
                             name="position_board_detail" placeholder="Enter Position Board Details"
                             value="{{ $apply->position_board_detail }}"  required>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="career_path_details">Career Path Details </label>
+                        <label What do you want to be in future? </label>
                         <input type="text" class="form-control rounded" id="career_path_details"
                             name="career_path_details" placeholder="Enter Career Path Details"
                             value="{{ $apply->career_path_details }}"  required>
@@ -255,21 +255,22 @@
                             <option <?= ($apply->preferred_test_location === 'Mardan') ? 'selected' : '' ?> value="Mardan">Mardan</option>
                             <option <?= ($apply->preferred_test_location === 'Gwadar') ? 'selected' : '' ?> value="Gwadar">Gwadar</option>
                             <option <?= ($apply->preferred_test_location === 'Sialkot') ? 'selected' : '' ?> value="Sialkot">Sialkot</option>  
+                            <option <?= ($apply->preferred_test_location === 'Lahore') ? 'selected' : '' ?> value="Lahore">Lahore</option>  
                         </select>
                         <div class="invalid-feedback">
                             Please select a test location.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="intermediate_studies">Intermediate Studies</label>
+                        <label for="intermediate_studies">What subject did you choose for your intermediate studies</label>
                         <input type="text" class="form-control rounded" id="intermediate_studies"
-                            name="intermediate_studies" placeholder="Intermediate Studies" value="{{ $apply->intermediate_studies }}">
+                            name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ $apply->intermediate_studies }}">
                         <div class="invalid-feedback">
                             Please make sure your intermediate studies is correct.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="residential_address">Residential Address</label>
+                        <label for="residential_address">Student Address</label>
                         <input type="text" class="form-control rounded" id="residential_address"
                             name="residential_address" placeholder="Residential Address" value="{{ $apply->residential_address }}">
                         <div class="invalid-feedback">
@@ -281,6 +282,17 @@
                 </div>
 
                 <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="relatives_detail">Relatives Detail</label>
+                        <input type="text" class="form-control rounded" id="relatives_detail"
+                            name="relatives_detail" placeholder="Relatives Details" value="{{ $apply->relatives_detail }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives detail is correct.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="relatives_name">Relatives Name</label>
                         <input type="text" class="form-control rounded" id="relatives_name"
@@ -313,23 +325,28 @@
                             Please make sure your relatives address is correct.
                         </div>
                     </div>
-                </div>
+                </div> -->
 
+                <hr>
+                    <h5 class="card-title">
+                        If you're studing in any madrasa/religious education books, please provide name and complete address
+                    </h5>
+                <hr>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="madrasa_name">Madrasa Name</label>
+                        <label for="madrasa_name">Name</label>
                         <input type="text" class="form-control rounded" id="madrasa_name"
-                            name="madrasa_name" placeholder="Madrasa Name" value="{{ $apply->madrasa_name }}">
+                            name="madrasa_name" placeholder="Name" value="{{ $apply->madrasa_name }}">
                         <div class="invalid-feedback">
-                            Please make sure your madrasa name is correct.
+                            Please make sure your name is correct.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="madrasa_address">Madrasa Address</label>
+                        <label for="madrasa_address">Address</label>
                         <input type="text" class="form-control rounded" id="madrasa_address"
-                            name="madrasa_address" placeholder="Madrasa Address" value="{{ $apply->madrasa_address }}">
+                            name="madrasa_address" placeholder="Address" value="{{ $apply->madrasa_address }}">
                         <div class="invalid-feedback">
-                            Please make sure your madrasa address is correct.
+                            Please make sure your address is correct.
                         </div>
                     </div>
                 </div>
@@ -805,7 +822,7 @@
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="fullname">Full Name <span
+                                                    <label for="fullname">Student Name <span
                                                                 class="required-class">*</span></label>
                                                     <input type="text" class="form-control rounded"
                                                            value="{{$apply->fullname}}" >
@@ -823,7 +840,7 @@
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="group">Group <span
+                                                    <label for="group">Matric Group <span
                                                                 class="required-class">*</span></label>
                                                     <input type="text" class="form-control rounded"
                                                            id="group"

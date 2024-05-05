@@ -109,21 +109,22 @@ class ClaimScholarShipController extends Controller
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
             // 'goals' => 'required|max:250',
             // 'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'share_any' => 'sometimes|nullable|max:250',
-            // 'student_photo' => 'required|image|mimes:jpeg,jpg,png|max:800',
-            // 'matric_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'intermediate_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'bachelor_one_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'bachelor_two_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'bachelor_three_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'bachelor_four_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'bachelor_five_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'beneficary_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
-            // 'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800'
+            
+            'student_photo' => 'required|image|mimes:jpeg,jpg,png|max:800',
+            'matric_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            'intermediate_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            'bachelor_one_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            'bachelor_two_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            'bachelor_three_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            'bachelor_four_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            'bachelor_five_photo' => 'sometimes|nullable|file|mimes:jpeg,jpg,pdf|max:800',
+            'beneficary_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800',
+            'father_mother_or_guardian_cnic_photo' => 'required|file|mimes:jpeg,jpg,pdf|max:800'
         ]);
 
         if ($validator->fails()) {
@@ -169,7 +170,7 @@ class ClaimScholarShipController extends Controller
         $studentData['email_address'] = $authStudent->getUser->email;
         $studentData['goals'] = request()->goals;
         $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
         $studentData['english_ability_test'] = request()->english_ability_test;
@@ -194,10 +195,11 @@ class ClaimScholarShipController extends Controller
         $studentData['year'] = request()->year;
         $studentData['achieved_position'] = request()->achieved_position;
         $studentData['current_college_institute_university'] = request()->current_college_institute_university;
-        $studentData['relatives_name'] = request()->relatives_name;
-        $studentData['relatives_email'] = request()->relatives_email;
-        $studentData['relatives_contact'] = request()->relatives_contact;
-        $studentData['relatives_address'] = request()->relatives_address;
+        // $studentData['relatives_name'] = request()->relatives_name;
+        // $studentData['relatives_email'] = request()->relatives_email;
+        // $studentData['relatives_contact'] = request()->relatives_contact;
+        // $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['relatives_detail'] = request()->relatives_detail;
 
         if (!empty($student)) {
             $extension = $student->extension();
@@ -364,7 +366,7 @@ class ClaimScholarShipController extends Controller
             'whatsapp_number' => 'sometimes|nullable|digits_between:11,13',
             // 'goals' => 'required|max:250',
             // 'suggestion' => 'required|max:250',
-            'your_contribution' => 'required|max:250',
+            // 'your_contribution' => 'required|max:250',
             'international_scolarship' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'standarized_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
             'english_ability_test' => 'required|in:' . implode(',', ApplyScholarShip::CHECK_OPTIONS),
@@ -409,7 +411,7 @@ class ClaimScholarShipController extends Controller
         $studentData['email_address'] = $claim->email_address;
         $studentData['goals'] = request()->goals;
         $studentData['suggestion'] = request()->suggestion;
-        $studentData['your_contribution'] = request()->your_contribution;
+        // $studentData['your_contribution'] = request()->your_contribution;
         $studentData['international_scolarship'] = request()->international_scolarship;
         $studentData['standarized_test'] = request()->standarized_test;
         $studentData['english_ability_test'] = request()->english_ability_test;

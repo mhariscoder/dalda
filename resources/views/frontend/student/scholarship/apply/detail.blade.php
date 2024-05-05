@@ -42,10 +42,21 @@
     <div class="card-body">
         <h5 class="card-title">Scholarship Details</h5>
         <div class="form-row">
-            <div class="form-group col-md-12">
-                <label>Full Name </label>
+            <div class="col-md-12 mb-3">
+                <label for="scholarship_as_per_education">Scholarship according to your education<span class="required-class">*</span></label>
+                <input type="text" class="form-control rounded" value="{{ $apply->scholarship_as_per_education }}" readonly>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Student Name</label>
                 <input type="text" class="form-control rounded"
                        value="{{ $apply->fullname }}" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                    <label for="father_name">Father Name<span class="required-class">*</span></label>
+                    <input type="text" class="form-control" id="father_name" name="father_name"
+                        placeholder="Father Name" value="{{ $apply->father_name }}" readonly>
             </div>
         </div>
             <div class="form-row">
@@ -60,10 +71,15 @@
                         placeholder="Enter Matric Board" value="{{ $apply->matric_board }}" readonly maxlength="100">
 
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="matriculation_year">Matriculation Year <span class="required-class">*</span></label>
+                    <input type="text" class="form-control" id="matriculation_year" name="matriculation_year"
+                        placeholder="Enter Matriculation Year" value="{{ $apply->matriculation_year }}" readonly>
+                </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="group">Group <span class="readonly-class">*</span></label>
+                    <label for="group">Matric Group <span class="readonly-class">*</span></label>
                     <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
                         value="{{ $apply->group }}" readonly maxlength="100" readonly>
 
@@ -120,14 +136,95 @@
                         name="beneficary_cnic" placeholder="Enter Your Beneficiary's CNIC Number"
                         value="{{ $apply->beneficary_cnic }}" maxlength="14" readonly>
                 </div>
-                <div class="col-md-6 mb-3">
+                <!-- <div class="col-md-6 mb-3">
                     <label for="beneficary_bank_address">Your Beneficiary's Bank Address <span
                             class="readonly-class">*</span></label>
                     <input type="text" class="form-control rounded" id="beneficary_bank_address"
                         name="beneficary_bank_address" placeholder="Enter Your Beneficiary's CNIC Number"
                         value="{{ $apply->beneficary_bank_address }}" readonly>
+                </div> -->
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label> If you've acheived any position of board level, please provide detail </label>
+                    <input type="text" class="form-control rounded " id="position_board_detail"
+                        name="position_board_detail" placeholder="Enter Position Board Details"
+                        value="{{ $apply->position_board_detail }}"  readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label What do you want to be in future? </label>
+                    <input type="text" class="form-control rounded" id="career_path_details"
+                        name="career_path_details" placeholder="Enter Career Path Details"
+                        value="{{ $apply->career_path_details }}"  readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="preferred_test_location">Preferred Test Location<span class="required-class">*</span></label>
+                    <input type="text" class="form-control rounded" value="<?= $apply->preferred_test_location ?>" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="intermediate_studies">What subject did you choose for your intermediate studies</label>
+                    <input type="text" class="form-control rounded" id="intermediate_studies"
+                        name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ $apply->intermediate_studies }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="residential_address">Student Address</label>
+                    <input type="text" class="form-control rounded" id="residential_address"
+                        name="residential_address" placeholder="Residential Address" value="{{ $apply->residential_address }}" readonly>
+                </div>
+
+                
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="relatives_detail">Relatives Detail</label>
+                    <input type="text" class="form-control rounded" id="relatives_detail"
+                        name="relatives_detail" placeholder="Relatives Detail" value="{{ $apply->relatives_detail }}" readonly>
                 </div>
             </div>
+
+            <!-- <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_name">Relatives Name</label>
+                    <input type="text" class="form-control rounded" id="relatives_name"
+                        name="relatives_name" placeholder="Relatives Name" value="{{ $apply->relatives_name }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_email">Relatives Email</label>
+                    <input type="text" class="form-control rounded" id="relatives_email"
+                        name="relatives_email" placeholder="Relatives Email" value="{{ $apply->relatives_email }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_contact">Relatives Contact</label>
+                    <input type="text" class="form-control rounded" id="relatives_contact"
+                        name="relatives_contact" placeholder="Relatives Contact" value="{{ $apply->relatives_contact }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="relatives_address">Relatives Address</label>
+                    <input type="text" class="form-control rounded" id="relatives_address"
+                        name="relatives_address" placeholder="Relatives Address" value="{{ $apply->relatives_address }}" readonly>
+                </div>
+            </div> -->
+
+            <hr>
+                <h5 class="card-title">
+                    If you're studing in any madrasa/religious education books, please provide name and complete address
+                </h5>
+            <hr>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="madrasa_name">Name</label>
+                    <input type="text" class="form-control rounded" id="madrasa_name"
+                        name="madrasa_name" placeholder="Name" value="{{ $apply->madrasa_name }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="madrasa_address">Address</label>
+                    <input type="text" class="form-control rounded" id="madrasa_address"
+                        name="madrasa_address" placeholder="Address" value="{{ $apply->madrasa_address }}" readonly>
+                </div>
+            </div>
+
             <hr>
             <h5 class="card-title">College Information</h5>
             <hr>
@@ -268,18 +365,18 @@
                     <label for="whatsapp_number">Your WhatsApp Number </label>
                     <input type="text" class="form-control rounded allowNumberOnly" id="whatsapp_number"
                         name="whatsapp_number" placeholder="Enter Your WhatsApp Number"
-                        value="{{ $apply->whatsapp_number }}" maxlength="13">
+                        value="{{ $apply->whatsapp_number }}" maxlength="13" readonly>
                 </div>
             </div>
-            <div class="form-row">
+            <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="goals">Short & Long Term Goals and how you will pay back/serve Dalda
                         Foundation after completing your degree ? <span class="readonly-class">*</span></label>
                     <textarea name="goals" class="form-control" placeholder="Enter Short & Long Term Goals" rows="2"
                         maxlength="250" readonly>{{ $apply->goals }}</textarea>
                 </div>
-            </div>
-            <div class="form-row">
+            </div> -->
+            <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="suggestion">Your Suggestions, how we together can develop Dalda Foundation Community to
                         serve
@@ -287,70 +384,30 @@
                     <textarea name="suggestion" class="form-control" placeholder="Enter Your Suggestions" rows="2"
                         maxlength="250" readonly>{{ $apply->suggestion }}</textarea>
                 </div>
-            </div>
-            <div class="form-row">
+            </div> -->
+            <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="your_contribution">What role you will play for Dalda
                         Foundation Community ? <span class="readonly-class">*</span></label>
                     <textarea name="your_contribution" class="form-control" placeholder="Enter Your Role For Dalda Foundation"
                         rows="2" maxlength="250" readonly>{{ $apply->your_contribution }}</textarea>
                 </div>
-            </div>
+            </div> -->
             <div class="form-row">
                 <div class="form-group form-check col-md-6">
                     <label for="contact">Are you interested in achieving international
                         scholarships with the help of Dalda
                         Foundation Trust ? <span class="readonly-class">*</span></label><br>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="international_scolarship" class="custom-control-input"
-                            id="international_scolarship_yes" value="yes"
-                            {{ $apply->international_scolarship == 'yes' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="international_scolarship_yes">Yes</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="international_scolarship" class="custom-control-input"
-                            id="international_scolarship_no" value="no"
-                            {{ $apply->international_scolarship == 'no' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="international_scolarship_no">No</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="international_scolarship" class="custom-control-input"
-                            id="international_scolarship_may" value="maybe"
-                            {{ $apply->international_scolarship == 'maybe' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="international_scolarship_may">May be</label>
-                    </div>
+                    {{$apply->international_scolarship}}
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cnic">Are you ready to take standardized tests such as
                         GRE/GMAT/LSAT ? <span class="readonly-class">*</span></label>
                     <br>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="standarized_test" id="standarized_test_yes"
-                            class="custom-control-input" id="standarized_test_yes" value="yes"
-                            {{ $apply->standarized_test == 'yes' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="standarized_test_yes">Yes</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="standarized_test" id="standarized_test_no"
-                            class="custom-control-input" id="standarized_test_no" value="no"
-                            {{ $apply->standarized_test == 'no' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline"
-                            for="standarized_test_no">No</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="standarized_test" id="standarized_test_may"
-                            class="custom-control-input" id="standarized_test_may" value="maybe"
-                            {{ $apply->standarized_test == 'maybe' ? 'checked' : '' }} readonly>
-                        <label class="custom-control-label checkbox-primary outline" for="standarized_test_may">May
-                            be</label>
-                    </div>
+                    {{ $apply->standarized_test}}
                 </div>
             </div>
-            <div class="form-row">
+            <!-- <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="contact">Are you ready to take English ability test such
                         as IELTS/TOEFL/PTE/PVT/ITEP/DUOLINGO ? <span class="readonly-class">*</span></label><br>
@@ -376,8 +433,8 @@
                             for="english_ability_test_may">May be</label>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
+            </div> -->
+            <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="share_any">Anything you want to share with Dalda
                         Foundation Trust ?</label>
@@ -385,7 +442,7 @@
                         maxlength="250">{{ $apply->share_any }}</textarea>
 
                 </div>
-            </div>
+            </div> -->
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label>Student Photo s </label>
@@ -489,7 +546,7 @@
                                     <div class="col-12">
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
-                                                <label>Full Name </label>
+                                                <label>Student Name </label>
                                                 <input type="text" class="form-control rounded"
                                                        value="{{ $apply->fullname }}" readonly>
                                             </div>
@@ -510,7 +567,7 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="group">Group <span
+                                                <label for="group">Matric Group <span
                                                             class="required-class">*</span></label>
                                                 <input type="text" class="form-control rounded"
                                                        id="group"
@@ -561,7 +618,7 @@
                                                 <input type="text" class="form-control rounded"
                                                        id="beneficary_bank_address" name="beneficary_bank_address"
                                                        placeholder="Enter Your Beneficiary's CNIC Number"
-                                                       value="{{ $apply->beneficary_bank_address }}">
+                                                       value="{{ $apply->beneficary_bank_address }}" readonly>
                                             </div>
                                         </div>
 
@@ -628,7 +685,7 @@
                                             <span class="font-weight-bold">Please give your teacher or neighbor reference which are not your relatives </span>
                                         </div>
 
-                                        <div class="form-row">
+                                        <!-- <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="password">Name<span class="required-class">*</span></label>
                                                 <input type="text" class="form-control rounded" id="teacher_name1"
@@ -675,7 +732,7 @@
                                                        value="{{ old('teacher_address2',$apply->teacher_address2) }}"
                                                        readonly>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="label">
                                             <span class="font-weight-bold">If the above information is incorrect from the form will be declined</span>
