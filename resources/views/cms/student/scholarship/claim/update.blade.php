@@ -57,9 +57,9 @@
                         <input type="text" class="form-control rounded" value="{{ $claim->student_id }}" readonly>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="fullname">Full Name</label>
+                        <label for="fullname">Student Name</label>
                         <input type="text" class="form-control rounded allowAlphabetOnly" name="fullname"
-                            id="fullname_id" placeholder="Student Full Name" value="{{ $claim->fullname }}">
+                            id="fullname_id" placeholder="Student Name" value="{{ $claim->fullname }}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="father_name">Father Name</label>
@@ -374,6 +374,10 @@
                 </div>
 
                 <div class="form-row">
+                    
+                </div>
+
+                <!-- <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="relatives_name">Relatives Name</label>
                         <input type="text" class="form-control rounded" id="relatives_name"
@@ -406,15 +410,24 @@
                             Please make sure your relatives address is correct.
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                         <label for="your_contribution">What role you will play for Dalda
                             Foundation Community ? <span class="required-class">*</span></label>
                         <textarea name="your_contribution" class="form-control" placeholder="Enter Your Role For Dalda Foundation"
                             rows="2" maxlength="250">{{ old('your_contribution', $claim->your_contribution) }}</textarea>
+                    </div> -->
+                    <div class="form-group col-md-6">
+                        <label for="relatives_detail">Relatives Detail</label>
+                        <input type="text" class="form-control rounded" id="relatives_detail"
+                            name="relatives_detail" placeholder="Relatives Details" value="{{ $claim->relatives_detail }}">
+                        <div class="invalid-feedback">
+                            Please make sure your relatives detail is correct.
+                        </div>
                     </div>
+
                     <div class="form-group col-md-6">
                         <label for="contact">Are you interested in achieving international
                             scholarships with the help of Dalda
@@ -845,7 +858,7 @@
                                                         value="{{ $claim->student_id ?? '' }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="fullname">Full Name <span
+                                                    <label for="fullname">Student Name <span
                                                             class="required-class">*</span></label>
                                                     <input type="text" class="form-control rounded"
                                                         value="{{ $claim->fullname ?? '' }}">

@@ -51,11 +51,15 @@
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="fullname">Full Name</label>
+                    <label for="fullname">Student Name</label>
                     <input type="text" class="form-control rounded allowAlphabetOnly"
                            name="fullname" id="fullname_id"
-                           placeholder="Student Full Name"
+                           placeholder="Student Name"
                            value="{{ $claim->fullname }}" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="father_name">Father Name</label>
+                    <input type="text" class="form-control rounded allowAlphabetOnly" name="father_name" id="father_name" placeholder="Student Father Name" value="{{ $claim->father_name }}" readonly>
                 </div>
             </div>
 
@@ -342,7 +346,7 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <!-- <div class="form-group col-md-6">
                     <label for="goals">Short & Long Term Goals and how you will pay
                         back/serve Dalda
                         Foundation after completing your degree? <span
@@ -353,8 +357,16 @@
                         <div class="invalid-feedback">
                         Please enter valid input.
                     </div>
+                </div> -->
+                <div class="form-group col-md-4">
+                    <label for="achieved_position">If you have achieved any position at the board level/University Level? please provide details  </label>
+                    <input type="text" class="form-control rounded"
+                        id="achieved_position" name="achieved_position"
+                        placeholder="Enter Your Achieved Position" readonly
+                        value="{{ $claim->achieved_position }}" >
                 </div>
-                <div class="form-group col-md-6">
+
+                <!-- <div class="form-group col-md-6">
                     <label for="suggestion">Your Suggestions, how we together can
                         develop Dalda Foundation Community to serve
                         mankind ? <span class="required-class">*</span></label>
@@ -365,11 +377,15 @@
                               <div class="invalid-feedback">
                                 Please enter valid input.
                             </div>
+                </div> -->
+                <div class="form-group col-md-4">
+                    <label for="current_college_institute_university">Share Your Current College/Institute/University Name?</label>
+                    <input type="text" class="form-control rounded" id="current_college_institute_university" name="current_college_institute_university" placeholder="Enter Your Current College/Institute/University Name?" readonly value="{{ $claim->current_college_institute_university }}" >
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <!-- <div class="form-group col-md-6">
                     <label for="your_contribution">What role you will play for Dalda
                         Foundation Community ? <span
                                 class="required-class">*</span></label>
@@ -381,7 +397,16 @@
                                 Please enter valid input.
                             </div>
 
+                </div> -->
+                <div class="form-group col-md-6">
+                    <label for="relatives_detail">Relatives Detail</label>
+                    <input type="text" class="form-control rounded" id="relatives_detail"
+                        name="relatives_detail" placeholder="Relatives Details" value="{{ $claim->relatives_detail }}" readonly>
+                    <div class="invalid-feedback">
+                        Please make sure your relatives detail is correct.
+                    </div>
                 </div>
+
                 <div class="form-group col-md-6">
                     <label for="contact">Are you interested in achieving international
                         scholarships with the help of Dalda
@@ -625,7 +650,7 @@
                                                        value="{{ $claim->student_id }}" readonly>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label>Full Name </label>
+                                                <label>Student Name </label>
                                                 <input type="text" class="form-control rounded"
                                                        value="{{ $claim->fullname }}" readonly>
                                             </div>

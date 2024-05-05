@@ -71,7 +71,8 @@ class ApplyScholarShip extends Model
         'relatives_contact',
         'relatives_address',
         'madrasa_name',
-        'madrasa_address'
+        'madrasa_address',
+        'relatives_detail'
     ];
 
     const YEARS = ['2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025', '2025-2026', '2026-2027', '2027-2028'];
