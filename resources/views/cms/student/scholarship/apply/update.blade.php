@@ -116,10 +116,24 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="group">Matric Group <span class="required-class">*</span></label>
-                        <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
-                            value="{{ $apply->group }}" maxlength="100"required>
+                        <!-- <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
+                            value="{{ $apply->group }}" maxlength="100"required> -->
+                        <select class="form-control rounded" name="group" required>
+                            <option selected disabled value=""> -- Select -- </option>
+                            <option value="Science" <?= $apply->group === 'Science' ? 'selected' : '' ?>>Science</option>
+                            <option value="Arts" <?= $apply->group === 'Arts' ? 'selected' : '' ?>>Arts</option>
+                            <option value="Other" <?= $apply->group === 'Other' ? 'selected' : '' ?>>Other</option>
+                        </select>
                         <div class="invalid-feedback">
                             Invalid group input.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="another_matric_group">Another Matric Group</label>
+                        <input type="text" class="form-control rounded" id="another_matric_group"
+                            name="another_matric_group" placeholder="Another Matric Group" value="{{ $apply->another_matric_group }}">
+                        <div class="invalid-feedback">
+                            Please make sure your another matric group is correct.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -264,7 +278,7 @@
                         <label for="intermediate_studies">What subject did you choose for your intermediate studies</label>
                         <!-- <input type="text" class="form-control rounded" id="intermediate_studies"
                             name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ $apply->intermediate_studies }}"> -->
-                        <select id="intermediate_studies" class="form-control rounded" name="group" required>
+                        <select id="intermediate_studies" class="form-control rounded" name="intermediate_studies" required>
                             <option selected disabled value=""> -- Select -- </option>
                             <option value="Pre-medical" <?= ($apply->intermediate_studies === 'Pre-medical') ? 'selected' : '' ?>>Pre-medical</option>
                             <option value="Pre-Engineering" <?= ($apply->intermediate_studies === 'Pre-Engineering') ? 'selected' : '' ?>>Pre-Engineering</option>
@@ -282,9 +296,18 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
+                        <label for="another_intermediate_group">Another Intermediate Studies</label>
+                        <input type="text" class="form-control rounded" id="another_intermediate_group"
+                            name="another_intermediate_group" placeholder="Another Intermediate Studies" value="{{ $apply->another_intermediate_group }}" required>
+                        <div class="invalid-feedback">
+                            Please make sure your other intermediate studies is correct.
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
                         <label for="residential_address">Student Address</label>
                         <input type="text" class="form-control rounded" id="residential_address"
-                            name="residential_address" placeholder="Student Address" value="{{ $apply->residential_address }}">
+                            name="residential_address" placeholder="Student Address" value="{{ $apply->residential_address }}" required>
                         <div class="invalid-feedback">
                             Please make sure your residential address is correct.
                         </div>
@@ -305,7 +328,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="student_email">Student Email</label>
                         <input type="text" class="form-control rounded" id="student_email"
-                            name="student_email" placeholder="Student Email" value="{{ $apply->student_email }}">
+                            name="student_email" placeholder="Student Email" value="{{ $apply->student_email }}" required>
                         <div class="invalid-feedback">
                             Please make sure student email detail is correct.
                         </div>
@@ -313,7 +336,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="intermediate_board">Intermediate Board</label>
                         <input type="text" class="form-control rounded" id="intermediate_board"
-                            name="intermediate_board" placeholder="Intermediate Board" value="{{ $apply->intermediate_board }}">
+                            name="intermediate_board" placeholder="Intermediate Board" value="{{ $apply->intermediate_board }}" required>
                         <div class="invalid-feedback">
                             Please make sure intermediate board detail is correct.
                         </div>
