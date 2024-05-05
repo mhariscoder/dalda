@@ -69,6 +69,9 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             // 'relatives_contact' => $row['relatives_contact'] ?? null,
             // 'relatives_address' => $row['relatives_address'] ?? null,
             'relatives_detail' => $row['relatives_detail'] ?? null,
+            'student_email' => $row['student_email'] ?? null,
+            'intermediate_board' => $row['intermediate_board'] ?? null,
+            'gender' => $row['gender'] ?? null
         ]);
     }
 
@@ -124,6 +127,9 @@ class ClaimForScholarShipImport implements ToModel, WithHeadingRow, WithValidati
             // 'relatives_contact' => 'sometimes|nullable|max:15',
             // 'relatives_address' => 'sometimes|nullable|max:150'
             'relatives_detail' => 'required|max:250',
+            'student_email' => 'required|nullable|max:250',
+            'intermediate_board' => 'required|nullable|max:250',
+            'gender' => 'required|nullable|max:250',
         ];
     }
 }

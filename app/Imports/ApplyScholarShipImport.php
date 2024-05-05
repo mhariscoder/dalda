@@ -96,6 +96,11 @@ class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
             'relatives_detail' => $row['relatives_detail'] ?? null,
             'madrasa_name' => $row['madrasa_name'] ?? null,
             'madrasa_address' => $row['madrasa_address'] ?? null,
+            'student_email' => $row['student_email'] ?? null,
+            'intermediate_board' => $row['intermediate_board'] ?? null,
+            'gender' => $row['gender'] ?? null,
+            'another_matric_group' => $row['another_matric_group'] ?? null,
+            'another_intermediate_group' => $row['another_intermediate_group'] ?? null,
         ]);
     }
 
@@ -135,6 +140,11 @@ class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
             'relatives_detail' => 'required|max:250',
             'madrasa_name' => 'sometimes|nullable|max:250',
             'madrasa_address' => 'sometimes|nullable|max:250',
+            'student_email' => 'required|nullable|max:250',
+            'intermediate_board' => 'required|nullable|max:250',
+            'gender' => 'required|nullable|max:250',
+            'another_matric_group' => 'sometimes|nullable|max:250',
+            'another_intermediate_group' => 'sometimes|nullable|max:250',
         ];
     }
 }

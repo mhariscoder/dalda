@@ -435,10 +435,11 @@ class ClaimScholarShipController extends Controller
         $studentData['year'] = request()->year;
         $studentData['achieved_position'] = request()->achieved_position;
         $studentData['current_college_institute_university'] = request()->current_college_institute_university;
-        $studentData['relatives_name'] = request()->relatives_name;
-        $studentData['relatives_email'] = request()->relatives_email;
-        $studentData['relatives_contact'] = request()->relatives_contact;
-        $studentData['relatives_address'] = request()->relatives_address;
+        // $studentData['relatives_name'] = request()->relatives_name;
+        // $studentData['relatives_email'] = request()->relatives_email;
+        // $studentData['relatives_contact'] = request()->relatives_contact;
+        // $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['relatives_detail'] = request()->relatives_detail;
 
         if (!empty($student)) {
             Storage::delete('public/uploads/' . $claim->student_photo);
