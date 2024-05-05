@@ -84,6 +84,11 @@
 
                     </div>
                     <div class="col-md-6 mb-3">
+                        <label for="another_matric_group">Another Matric Group</label>
+                        <input type="text" class="form-control rounded" id="another_matric_group"
+                            name="another_matric_group" placeholder="Another Matric Group" value="{{ $apply->another_matric_group }}" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <label for="marks_in_matric">Marks in Matric <span class="small">( Write in this format:
                                 600/1050 ) </span><span class="readonly-class">*</span></label>
                         <div class="input-group">
@@ -173,6 +178,11 @@
                         <input type="text" class="form-control rounded" id="intermediate_studies"
                             name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ $apply->intermediate_studies }}" readonly>
                         
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="another_intermediate_group">Another intermediate Studies</label>
+                        <input type="text" class="form-control rounded" id="another_intermediate_group"
+                            name="another_intermediate_group" placeholder="Another intermediate Studies" value="{{ $apply->another_intermediate_group }}" readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="residential_address">Student Address</label>
