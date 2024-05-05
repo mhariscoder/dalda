@@ -110,10 +110,16 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="group">Matric Group <span class="required-class">*</span></label>
-                        <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
-                            value="{{ old('group') }}" required maxlength="100">
+                        <!-- <input type="text" class="form-control" id="group" name="group" placeholder="Enter Group"
+                            value="{{ old('group') }}" required maxlength="100"> -->
+                            <select class="form-control rounded" name="group" required>
+                                <option selected disabled value=""> -- Select -- </option>
+                                <option value="Science">Science</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Other">Other</option>
+                            </select>
                         <div class="invalid-feedback">
-                            Invalid group input.
+                            Invalid group select.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -205,7 +211,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label What do you want to be in future? </label>
+                    <label> What do you want to be in future? </label>
                         <input type="text" class="form-control rounded" id="career_path_details"
                             name="career_path_details" placeholder="Enter Career Path Details"
                             value="{{ old('career_path_details') }}"  required>
@@ -217,7 +223,6 @@
                         <label for="preferred_test_location">Preferred Test Location<span class="required-class">*</span></label>
                         <select class="form-control rounded" name="preferred_test_location" required>
                             <option selected disabled value=""> -- Select -- </option>
-                            Lahore
                             <option value="Sukkur">Sukkur</option>
                             <option value="Peshawar">Peshawar</option>
                             <option value="Rawalpindi">Rawalpindi</option>
@@ -255,8 +260,21 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="intermediate_studies">What subject did you choose for your intermediate studies</label>
-                        <input type="text" class="form-control rounded" id="intermediate_studies"
-                            name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ old('intermediate_studies') }}">
+                        <!-- <input type="text" class="form-control rounded" id="intermediate_studies"
+                            name="intermediate_studies" placeholder="What subject did you choose for your intermediate studies" value="{{ old('intermediate_studies') }}"> -->
+                        <select id="intermediate_studies" class="form-control rounded" name="group" required>
+                            <option selected disabled value=""> -- Select -- </option>
+                            <option value="Pre-medical">Pre-medical</option>
+                            <option value="Pre-Engineering">Pre-Engineering</option>
+                            <option value="General Science">General Science</option>
+                            <option value="Commerce">Commerce</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Economics">Economics</option>
+                            <option value="ICS">ICS</option>
+                            <option value="Arts">Arts</option>
+                            <option value="DAE (Electronics, Plumbing, Civil, Chemical, Mechanical, Other)">DAE (Electronics, Plumbing, Civil, Chemical, Mechanical, Other)</option>
+                            <option value="Other">Other</option>
+                        </select>
                         <div class="invalid-feedback">
                             Please make sure your intermediate studies is correct.
                         </div>
@@ -264,7 +282,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="residential_address">Student Address</label>
                         <input type="text" class="form-control rounded" id="residential_address"
-                            name="residential_address" placeholder="Residential Address" value="{{ old('residential_address') }}">
+                            name="residential_address" placeholder="Student Address" value="{{ old('residential_address') }}">
                         <div class="invalid-feedback">
                             Please make sure your residential address is correct.
                         </div>
@@ -274,12 +292,48 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="relatives_detail">Relatives Detail</label>
                         <input type="text" class="form-control rounded" id="relatives_detail"
                             name="relatives_detail" placeholder="Relatives Details" value="{{ old('relatives_detail') }}">
                         <div class="invalid-feedback">
                             Please make sure your relatives detail is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="student_email">Student Email</label>
+                        <input type="text" class="form-control rounded" id="student_email"
+                            name="student_email" placeholder="Student Email" value="{{ old('student_email') }}">
+                        <div class="invalid-feedback">
+                            Please make sure student email detail is correct.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="intermediate_board">Intermediate Board</label>
+                        <input type="text" class="form-control rounded" id="intermediate_board"
+                            name="intermediate_board" placeholder="Intermediate Board" value="{{ old('intermediate_board') }}">
+                        <div class="invalid-feedback">
+                            Please make sure intermediate board detail is correct.
+                        </div>
+                    </div>
+                    <div class="form-group form-check col-md-6">
+                        <label for="contact">Gender <span class="required-class">*</span></label><br>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="gender" class="custom-control-input"
+                                id="male" value="male"
+                                {{ old('gender') == 'male' ? 'checked' : '' }} required>
+                            <label class="custom-control-label checkbox-primary outline"
+                                for="male">male</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="gender" class="custom-control-input"
+                                id="famale" value="female"
+                                {{ old('gender') == 'female' ? 'checked' : '' }} required>
+                            <label class="custom-control-label checkbox-primary outline"
+                                for="famale">female</label>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please choose one of the option.
                         </div>
                     </div>
                 </div>

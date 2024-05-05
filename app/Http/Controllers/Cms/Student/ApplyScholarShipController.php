@@ -127,9 +127,14 @@ class ApplyScholarShipController extends Controller
             // 'relatives_email' => 'required|max:250',
             // 'relatives_contact' => 'required|max:250',
             // 'relatives_address' => 'required|max:250',
-            'relatives_detail' => 'requried|max:250',
+            'relatives_detail' => 'required|max:250',
             'madrasa_name' => 'sometimes|nullable|max:250|max:250',
-            'madrasa_address' => 'sometimes|nullable|max:250'
+            'madrasa_address' => 'sometimes|nullable|max:250',
+            'student_email' => 'required|max:250',
+            'intermediate_board' => 'required|max:250',
+            'gender' => 'required|max:250',
+            'another_matric_group' => 'sometimes|nullable|max:250',
+            'another_intermediate_group' => 'sometimes|nullable|max:250',
         ]);
 
         if ($validator->fails()) {
@@ -212,12 +217,19 @@ class ApplyScholarShipController extends Controller
         $studentData['preferred_test_location'] = request()->preferred_test_location;
         $studentData['intermediate_studies'] = request()->intermediate_studies;
         $studentData['residential_address'] = request()->residential_address;
-        $studentData['relatives_name'] = request()->relatives_name;
-        $studentData['relatives_email'] = request()->relatives_email;
-        $studentData['relatives_contact'] = request()->relatives_contact;
-        $studentData['relatives_address'] = request()->relatives_address;
+        // $studentData['relatives_name'] = request()->relatives_name;
+        // $studentData['relatives_email'] = request()->relatives_email;
+        // $studentData['relatives_contact'] = request()->relatives_contact;
+        // $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['relatives_detail'] = request()->relatives_detail;
         $studentData['madrasa_name'] = request()->madrasa_name;
         $studentData['madrasa_address'] = request()->madrasa_address;
+        $studentData['student_email'] = request()->student_email;
+        $studentData['intermediate_board'] = request()->intermediate_board;
+        $studentData['gender'] = request()->gender;
+        $studentData['another_matric_group'] = request()->another_matric_group;
+        $studentData['another_intermediate_group'] = request()->another_intermediate_group;
+        
 
         $student = request()->file('student_photo');
         $matric_marksheet = request()->file('marksheet_photo');
@@ -332,12 +344,18 @@ class ApplyScholarShipController extends Controller
             'preferred_test_location' => 'required|max:250',
             'intermediate_studies' => 'required|max:250',
             'residential_address' => 'required|max:250',
-            'relatives_name' => 'required|max:250',
-            'relatives_email' => 'required|max:250',
-            'relatives_contact' => 'required|max:250',
-            'relatives_address' => 'required|max:250',
+            // 'relatives_name' => 'required|max:250',
+            // 'relatives_email' => 'required|max:250',
+            // 'relatives_contact' => 'required|max:250',
+            // 'relatives_address' => 'required|max:250',
+            'relatives_detail' => 'required|max:250',
             'madrasa_name' => 'sometimes|nullable|max:250|max:250',
-            'madrasa_address' => 'sometimes|nullable|max:250'
+            'madrasa_address' => 'sometimes|nullable|max:250',
+            'student_email' => 'required|max:250',
+            'intermediate_board' => 'required|max:250',
+            'gender' => 'required|max:250',
+            'another_matric_group' => 'sometimes|nullable|max:250',
+            'another_intermediate_group' => 'sometimes|nullable|max:250',
         ]);
 
         if ($validator->fails()) {
@@ -399,12 +417,18 @@ class ApplyScholarShipController extends Controller
         $studentData['preferred_test_location'] = request()->preferred_test_location;
         $studentData['intermediate_studies'] = request()->intermediate_studies;
         $studentData['residential_address'] = request()->residential_address;
-        $studentData['relatives_name'] = request()->relatives_name;
-        $studentData['relatives_email'] = request()->relatives_email;
-        $studentData['relatives_contact'] = request()->relatives_contact;
-        $studentData['relatives_address'] = request()->relatives_address;
+        // $studentData['relatives_name'] = request()->relatives_name;
+        // $studentData['relatives_email'] = request()->relatives_email;
+        // $studentData['relatives_contact'] = request()->relatives_contact;
+        // $studentData['relatives_address'] = request()->relatives_address;
+        $studentData['relatives_detail'] = request()->relatives_detail;
         $studentData['madrasa_name'] = request()->madrasa_name;
         $studentData['madrasa_address'] = request()->madrasa_address;
+        $studentData['student_email'] = request()->student_email;
+        $studentData['intermediate_board'] = request()->intermediate_board;
+        $studentData['gender'] = request()->gender;
+        $studentData['another_matric_group'] = request()->another_matric_group;
+        $studentData['another_intermediate_group'] = request()->another_intermediate_group;
 
         $student = request()->file('student_photo');
         $matric_marksheet = request()->file('marksheet_photo');

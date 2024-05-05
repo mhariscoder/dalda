@@ -153,7 +153,7 @@
                         value="{{ $apply->position_board_detail }}"  readonly>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label What do you want to be in future? </label>
+                    <label> What do you want to be in future? </label>
                     <input type="text" class="form-control rounded" id="career_path_details"
                         name="career_path_details" placeholder="Enter Career Path Details"
                         value="{{ $apply->career_path_details }}"  readonly>
@@ -170,17 +170,31 @@
                 <div class="col-md-6 mb-3">
                     <label for="residential_address">Student Address</label>
                     <input type="text" class="form-control rounded" id="residential_address"
-                        name="residential_address" placeholder="Residential Address" value="{{ $apply->residential_address }}" readonly>
+                        name="residential_address" placeholder="Student Address" value="{{ $apply->residential_address }}" readonly>
                 </div>
 
                 
             </div>
 
             <div class="form-row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                     <label for="relatives_detail">Relatives Detail</label>
                     <input type="text" class="form-control rounded" id="relatives_detail"
                         name="relatives_detail" placeholder="Relatives Detail" value="{{ $apply->relatives_detail }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="student_email">Student Email</label>
+                    <input type="text" class="form-control rounded" id="student_email"
+                        name="student_email" placeholder="Student Email" value="{{ $apply->student_email }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="intermediate_board">Intermediate Board</label>
+                    <input type="text" class="form-control rounded" id="intermediate_board"
+                        name="intermediate_board" placeholder="Intermediate Board" value="{{ $apply->intermediate_board }}" readonly>
+                </div>
+                <div class="form-group form-check col-md-6">
+                    <label for="contact">Gender <span class="required-class">*</span></label><br>
+                    {{$apply->gender}}
                 </div>
             </div>
 
