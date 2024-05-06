@@ -107,7 +107,7 @@ class ApplyScholarShipImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'student_id' => 'required|exists:users,student_id',
+            // 'student_id' => 'required|exists:users,student_id',
             'year' => 'required|in:' . implode(',', ApplyScholarShip::YEARS),
             'matric_board' => 'required|max:150',
             'group' => 'required|max:150',
