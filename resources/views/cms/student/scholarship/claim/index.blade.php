@@ -164,21 +164,24 @@
                                                 @endif
                                             </td>
                                             <td>
+                                            <div class="d-flex justify-content-start flex-row flex-wrap">
                                                 @if ($claim->status === 'pending')
-                                                    <div class="d-flex justify-content-start flex-row flex-wrap">
+                                                   
                                                         <a href="javascript:void(0);"
                                                            class="btn btn-success btn-sm"
                                                            onclick="changeStatus(this,'{{$claim->id}}','approved')">Approved</a>
                                                         <a href="javascript:void(0);"
                                                            class="btn btn-warning btn-sm ml-1"
                                                            onclick="changeStatus(this,'{{$claim->id}}','rejected')">Rejected</a>
-                                                        <a href="javascript:void(0);"
-                                                           class="btn btn-danger btn-sm ml-1"
-                                                           onclick="changeStatus(this,'{{$claim->id}}','closed')">Closed</a>
-                                                    </div>
+                                                        
+                                                    
                                                 @else
                                                     -
                                                 @endif
+                                                <a href="javascript:void(0);"
+                                                           class="btn btn-danger btn-sm ml-1"
+                                                           onclick="changeStatus(this,'{{$claim->id}}','closed')">Closed</a>
+                                                </div>
                                             </td>
                                             <td class="d-flex justify-content-left align-items-center">
                                                 <a href="/admin/claim-for-scoloarship-detail/{{$claim->id}}"
