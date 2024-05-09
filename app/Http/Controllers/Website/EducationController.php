@@ -68,6 +68,8 @@ class EducationController extends Controller
                 $message->to('test@yopmail.com')
                         ->subject('Subject of the email');
             });
+
+            return redirect()->back();
         } catch (\Exception $e) {
             throw $e;
         }
