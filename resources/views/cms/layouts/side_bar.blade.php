@@ -289,6 +289,18 @@
                                                     Services
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a href="/admin/pages/education/directory"
+                                                    class="{{ getActiveClass(request()->segment(4), ['directory']) }}">
+                                                    Directory
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/pages/education/counselling"
+                                                    class="{{ getActiveClass(request()->segment(4), ['counselling']) }}">
+                                                    Counselling Section
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 

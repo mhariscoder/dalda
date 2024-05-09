@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Counselling;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
             'Hospital' => 'App\Models\CMSHospital',
             'Education / Scholarship' => 'App\Models\CMSEducation',
         ]);
+
+        View::composer('*', function ($view) {
+            $view->with('counsellingSection', Counselling::query()->with('counsellingCategory')->get());
+        });
     }
 }

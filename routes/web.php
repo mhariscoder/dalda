@@ -45,10 +45,10 @@ Route::get('/test-event', function () {
 
 Route::namespace('Website')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-  
 
     Route::get('/about', 'AboutController@index')->name('about');
     Route::get('/education', 'EducationController@index')->name('education');
+    Route::post('/counselling/customer-query', 'EducationController@customerQuery')->name('counselling.customer-query');
     Route::get('/health', 'HealthController@index')->name('health');
     Route::get('/agriculture', 'AgricultureController@index')->name('agriculture');
     // Route::get('/donate', 'DonateUsController@index')->name('donate');
@@ -253,6 +253,17 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
                     Route::get('/services-update/{serviceId}', 'CMSEducationServicesController@edit');
                     Route::post('/services-update/{serviceId}', 'CMSEducationServicesController@update');
                     Route::get('/delete-services-list/{servicesId}', 'CMSEducationServicesController@destroy');
+
+                    Route::get('/directory', 'CMSEducationDirectoryController@index');
+                    Route::post('/directory/upload', 'CMSEducationDirectoryController@upload');
+
+                    Route::resource('counselling', 'CMSEducationCounsellingController')->names('counselling');
+                    
+                    Route::get('/counselling-category/create', 'CMSEducationCounsellingController@_create')->name('counselling-category.create');
+                    Route::get('/counselling-category/{id}/edit', 'CMSEducationCounsellingController@_edit')->name('counselling-category.edit');
+                    Route::post('/counselling-category', 'CMSEducationCounsellingController@_store')->name('counselling_category.store');
+                    Route::put('/counselling-category/{id}', 'CMSEducationCounsellingController@_update')->name('counselling-category.update');
+                    Route::delete('/counselling-category/{id}', 'CMSEducationCounsellingController@_destroy')->name('counselling.category.destroy');
                 });
 
                 Route::prefix('health')->group(function () {
@@ -448,3 +459,4 @@ Route::namespace('FrontEnd')->group(function () {
         });
     });
 });
+
