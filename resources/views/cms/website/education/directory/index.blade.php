@@ -33,11 +33,13 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Upload</button>
                         </form>
-
-                        <div class="text-right">
-                            <label>{{ $data->file ?? 'Empty File' }}</label>
-                            <a download href="{{ url('storage/uploads') . '/' . $data->file }}" class="btn btn-primary"> Download</a>
-                        </div>
+                        
+                        @if(isset($data->file))
+                            <div class="text-right">
+                                <label>{{ $data->file ?? 'Empty File' }}</label>
+                                <a download href="{{ url('storage/uploads') . '/' . $data->file }}" class="btn btn-primary"> Download</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
