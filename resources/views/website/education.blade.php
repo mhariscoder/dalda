@@ -210,9 +210,11 @@
 
             </div>
 
+            @if(isset($data->file))
             <div style="text-align:center">
                 <a class="btn btn-primary-outline btn-lg" href="{{ url('storage/uploads') . '/' . $data->file }}">Directory</a>
             </div>
+            @endif
         </div>
     </section>
     <section class="financialReward">
