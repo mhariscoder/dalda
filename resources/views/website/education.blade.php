@@ -182,6 +182,10 @@
 
 
             </div>
+
+            <div style="text-align:center">
+                <button class="btn btn-primary-outline btn-lg" data-toggle="modal" data-target="#counsellingSectionModal">Counselling Section</button>
+            </div>
         </div>
     </section>
     <section class="international-education">
@@ -204,6 +208,10 @@
                     </div>
                 @endforeach
 
+            </div>
+
+            <div style="text-align:center">
+                <a class="btn btn-primary-outline btn-lg" href="{{ url('storage/uploads') . '/' . $data->file }}">Directory</a>
             </div>
         </div>
     </section>

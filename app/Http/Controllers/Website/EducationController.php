@@ -9,7 +9,9 @@ use App\Models\CMSEducationServices;
 use App\Models\HighAchieversStudent;
 use App\Models\CMSContact;
 use App\Models\User;
+use App\Models\CMSEducationDirectory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EducationController extends Controller
 {
@@ -20,8 +22,9 @@ class EducationController extends Controller
         $boxes = CMSEducationBox::where('education_id', $education->id)->orderBy('sort_order', 'asc')->get();
         $services = CMSEducationServices::where('education_id', $education->id)->orderBy('sort_order', 'asc')->get();
         $achievers = HighAchieversStudent::orderBy('position', 'asc')->limit(3)->get();
+        $data = CMSEducationDirectory::query()->first();
 
-        return view('website.education', compact('education', 'boxes', 'services', 'achievers'));
+        return view('website.education', compact('education', 'boxes', 'services', 'achievers', 'data'));
     }
 
     public function highAchievers(Request $request)
@@ -48,6 +51,25 @@ class EducationController extends Controller
         } else {
             $high_achievers = HighAchieversStudent::orderBy('position', 'asc')->get();
             return view('website.high-achievers', compact('high_achievers', 'contact', 'students'));
+        }
+    }
+
+    public function customerQuery(Request $request)
+    {
+        try {
+            $queryParameters = json_encode($request->query->all());
+    
+            $data = [
+                'title' => 'Counselling section query',
+                'content' => $queryParameters,
+            ];
+        
+            Mail::raw('This is the email content: ' . $data['content'], function ($message) {
+                $message->to('test@yopmail.com')
+                        ->subject('Subject of the email');
+            });
+        } catch (\Exception $e) {
+            throw $e;
         }
     }
 }

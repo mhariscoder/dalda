@@ -33,34 +33,39 @@
     <!-- Slick Carousel Theme (Optional) -->
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-        <style>
-            .whatsapp {
-                position: fixed;
-                right: 0.5%;
-                bottom: 15%;
-                width: 4em;
-                z-index: 99;
-            }
-            .whatsapp a{
-               font-size: 25px
-            }
-            .whatsapp h5 {
-                color: white;
-                background: #20b20f;
-                height: 50px;
-                width: 50px;
-                padding-left: 1px;
-                padding-top: 6px;
-                border-radius: calc(50px/2);
-                text-align: center;
-                line-height: 0px;
-                box-shadow: 2px 1px 20px 1px rgb(0 0 0 / 22%);
-            }
-            .whatsapp i{
-                font-size: 1.8em;
-            }
-        </style>
-        {!! RecaptchaV3::initJs() !!}
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .whatsapp {
+            position: fixed;
+            right: 0.5%;
+            bottom: 15%;
+            width: 4em;
+            z-index: 99;
+        }
+        .whatsapp a{
+            font-size: 25px
+        }
+        .whatsapp h5 {
+            color: white;
+            background: #20b20f;
+            height: 50px;
+            width: 50px;
+            padding-left: 1px;
+            padding-top: 6px;
+            border-radius: calc(50px/2);
+            text-align: center;
+            line-height: 0px;
+            box-shadow: 2px 1px 20px 1px rgb(0 0 0 / 22%);
+        }
+        .whatsapp i{
+            font-size: 1.8em;
+        }
+    </style>
+    {!! RecaptchaV3::initJs() !!}
 </head>
 
 <body>
@@ -71,10 +76,14 @@
 
     @yield('content')
     @include('website.layout.footer')
+    
+
     <div class="whatsapp">
         <a href="https://api.whatsapp.com/send?phone=923311200897" target="_blank">
             <h5><i class="fab fa-whatsapp fa-2x"></i></h5></a>
     </div>
+
+    @include('website.layouts.counselling-section-modal')
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
