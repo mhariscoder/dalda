@@ -217,7 +217,8 @@
                     <h5 class="card-title">Past Installments</h5>
                     <hr>
                 @endif
-                @foreach ($claim->installments as $key => $val)
+
+                @forelse ($claim->installments as $key => $val)
                     @php $key = $key +1; @endphp
                     <h6>Installments {{ $key }}</h6>
                     <input type="hidden" name="installments[{{ $key }}]" value="{{ $val->inst_number }}">
@@ -251,7 +252,55 @@
                                 value="{{ $val->amount_received }}">
                         </div>
                     </div>
-                @endforeach
+                
+                @empty
+                    @for($i = 1; $i <= 7; $i++)
+                        <h6>Installments {{$i}}</h6>
+                        <input type="hidden" name="installments[{{$i}}]" value="{{$i}}">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="year_of_receiving{{$i}}">Year Of Receiving</label>
+                                <input type="text" class="form-control rounded allowNumberOnly"
+                                    id="year_of_receiving{{$i}}"
+                                    name="year_of_receiving[{{$i}}]"
+                                    placeholder="Enter Year Of Receiving"
+                                    value="{{ old('year_of_receiving'.$i) }}">
+                                    <div class="invalid-feedback">
+                                        Please enter year of receiving.
+                                    </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="received_yes{{$i}}">Receieved Yes Or No</label>
+                                <input type="text" class="form-control rounded "
+                                    id="received_yes{{$i}}" name="received_yes[{{$i}}]"
+                                    placeholder="Enter Receieved Yes Or No"
+                                    value="{{ old('received_yes'.$i) }}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="if_no_reason{{$i}}">If No Then Give Reason Why?</label>
+                                <input type="text" class="form-control rounded"
+                                    id="if_no_reason{{$i}}" name="if_no_reason[{{$i}}]"
+                                    placeholder="Enter If No Then Give Reason Why?"
+                                    value="{{ old('if_no_reason'.$i) }}">
+                                    <div class="invalid-feedback">
+                                        Please enter valid input.
+                                    </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="amount_received{{$i}}">Amount Received</label>
+                                <input type="text" class="form-control rounded allowNumberOnly"
+                                    id="amount_received{{$i}}" name="amount_received[{{$i}}]"
+                                    placeholder="Enter Amount Received"
+                                    value="{{ old('amount_received'.$i) }}">
+                                    <div class="invalid-feedback">
+                                        Please enter amount received.
+                                    </div>
+                            </div>
+                        </div>
+                    @endfor
+                @endforelse
+
+                
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="beneficary_name">Your Beneficiary Name <span class="required-class">*</span></label>
