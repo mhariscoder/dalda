@@ -535,17 +535,38 @@ class ClaimScholarShipController extends Controller
         if (!is_null(request()->installments) && is_array(request()->installments)) {
             $installment = [];
             foreach (\request()->installments as $key => $val) {
-                $installment[] = [
-                    'claim_id' => $claim->id,
-                    'inst_number' => $val,
-                    'year_of_receiving' => \request()->year_of_receiving[$key],
-                    'received_yes' => \request()->received_yes[$key],
-                    'if_no_reason' => \request()->if_no_reason[$key],
-                    'amount_received' => \request()->amount_received[$key]
-                ];
+                $updateInstallment = Installment::query()
+                    ->where('claim_id', $claim->id)
+                    ->where('inst_number', $val)
+                    ->update([
+                        'year_of_receiving' => \request()->year_of_receiving[$key],
+                        'received_yes' => \request()->received_yes[$key],
+                        'if_no_reason' => \request()->if_no_reason[$key],
+                        'amount_received' => \request()->amount_received[$key]
+                    ]);
+
+                if(!$updateInstallment) {
+                    Installment::query()->create([
+                        'claim_id' => $claim->id,
+                        'inst_number' => $val,
+                        'year_of_receiving' => \request()->year_of_receiving[$key],
+                        'received_yes' => \request()->received_yes[$key],
+                        'if_no_reason' => \request()->if_no_reason[$key],
+                        'amount_received' => \request()->amount_received[$key]
+                    ]);
+                }
+
+                // $installment[] = [
+                //     'claim_id' => $claim->id,
+                //     'inst_number' => $val,
+                //     'year_of_receiving' => \request()->year_of_receiving[$key],
+                //     'received_yes' => \request()->received_yes[$key],
+                //     'if_no_reason' => \request()->if_no_reason[$key],
+                //     'amount_received' => \request()->amount_received[$key]
+                // ];
             }
-            Installment::insert($installment);
-            $claim->installments()->delete();
+            // Installment::insert($installment);
+            // $claim->installments()->delete();
         }
 
         return response()->json(['msg' => 'Your claimed form has been updated.']);
