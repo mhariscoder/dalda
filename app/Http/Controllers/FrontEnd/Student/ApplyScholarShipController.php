@@ -39,6 +39,9 @@ class  ApplyScholarShipController extends Controller
 
     public function addStudentApply()
     {
+        $findAlreadyAppliedForScholorship = ApplyScholarShip::query()->where('user_id', auth()->user()->id)->first();
+        if($findAlreadyAppliedForScholorship) return redirect('/student/apply-for-scholarship')->with('error', "You don't have right permission.");
+
         $years = ApplyScholarShip::YEARS;
         $students = User::role('student')->where('is_block', '!=', 1)->get();
         return view('frontend.student.scholarship.apply.add', compact('years', 'students'));
