@@ -48,6 +48,7 @@
                 </div>
             @endif
             <form id="claimForm" class="needs-validation" novalidate>
+                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                 <div class="row">
                     <div class="col-md-12 form-errors"></div>
                 </div>
