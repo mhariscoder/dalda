@@ -443,6 +443,8 @@ Route::namespace('FrontEnd')->group(function () {
             Route::get('/apply-for-scholarship', 'ApplyScholarShipController@index');
             Route::get('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApply');
             Route::post('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApplyData');
+            Route::get('/update-apply-for-scholarship/{applyId}', 'ApplyScholarShipController@updateApply');
+            Route::post('/update-apply-for-scholarship/{applyId}', 'ApplyScholarShipController@updateApplyData');
             Route::get('/apply-for-scholarship-detail/{applyId}', 'ApplyScholarShipController@detailStudentApply');
             Route::get('/admit-card/{applyId}', 'ApplyScholarShipController@generateAdmitCard');
             Route::get('/claim-for-scholarship', 'ClaimScholarShipController@index');
