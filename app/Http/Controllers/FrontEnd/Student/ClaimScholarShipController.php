@@ -40,8 +40,8 @@ class ClaimScholarShipController extends Controller
 
     public function addStudentClaim()
     {
-        $findAlreadyClaimed = ClaimScholarShip::query()->where('user_id', auth()->user()->id)->first();
-        if($findAlreadyClaimed) return redirect('/student/claim-for-scholarship')->with('error', "You don't have right permission.");
+        $findAlreadyClaimed = ClaimScholarShip::query()->where('user_id', auth()->user()->id)->latest()->first();;
+        if($findAlreadyClaimed->status == 'pending') return redirect('/student/claim-for-scholarship')->with('error', "You don't have right permission.");
 
         $student = User::where('id', Auth::id())->first()->student_id;
         if (empty($student)) {
