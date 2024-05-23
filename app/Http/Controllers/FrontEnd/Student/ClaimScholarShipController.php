@@ -40,7 +40,7 @@ class ClaimScholarShipController extends Controller
 
     public function addStudentClaim()
     {
-        $findAlreadyClaimed = ClaimScholarShip::query()->where('user_id', auth()->user()->id)->latest()->first();;
+        $findAlreadyClaimed = ClaimScholarShip::query()->where('user_id', auth()->user()->id)->latest()->first();
         if($findAlreadyClaimed->status == 'pending') return redirect('/student/claim-for-scholarship')->with('error', "You don't have right permission.");
 
         $student = User::where('id', Auth::id())->first()->student_id;
@@ -52,13 +52,13 @@ class ClaimScholarShipController extends Controller
 
     public function addStudentClaimData()
     {
-        $findClaimForm = ClaimScholarShip::query()->where('student_id', auth()->user()->student_id)->first();
+        $findClaimForm = ClaimScholarShip::query()->where('student_id', auth()->user()->student_id)->where('status', 'pending')->first();
         if ($findClaimForm) return response()->json(['error' => "Student has already claimed for the scholorship!"], 422);
 
         $studentData = array();
         $user = Auth::user();
         if (empty($user->student_id)) {
-            return back()->withErrors(['error' => 'Please Contact Administrator for your student id'])->withInput();
+            return response()->json(['error' => 'Please contact the administrator for your student ID.'], 422);
         }
 
         $validator = Validator::make(request()->all(), [
@@ -173,7 +173,7 @@ class ClaimScholarShipController extends Controller
                 $studentData['student_photo'] = $newStudentName;
             } else {
                 File::delete($destination);
-                return back()->withErrors(['error', 'Student photo have not been saved!'])->withInput();
+                return response()->json(['errors' => 'Student photo have not been saved'], 422);
             }
         }
 
@@ -284,11 +284,11 @@ class ClaimScholarShipController extends Controller
             'message' => ' is claimed for scholarship.'
         ]);
 
-        try {
-            event(new \App\Events\FormSubmitted('claim', $admin));
-        } catch (ConnectionException $exception) {
-            return back()->with('success', 'You have successfully claimed, but ' . $exception->getMessage());
-        };
+        // try {
+        //     event(new \App\Events\FormSubmitted('claim', $admin));
+        // } catch (ConnectionException $exception) {
+        //     return response()->json(['msg' => 'You have successfully claimed, but ' . $exception->getMessage()]);
+        // };
 
         return response()->json(['msg' => 'You have successfully claimed for scholarship.']);
     }
