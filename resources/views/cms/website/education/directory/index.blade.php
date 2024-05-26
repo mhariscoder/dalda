@@ -27,6 +27,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <form id="upload-directory">
+                            @csrf
                             <div class="form-group">
                                 <label>Upload directory PDF</label>
                                 <input class="form-control" type="file" name="file" />
