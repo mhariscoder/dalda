@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-4"></div>
                         <div class="col-4">
-                            <input type="text" id="form-daterange-picker" class="form-control"/>
+                            <input type="text" id="form-daterange-picker" class="form-control" placeholder="Click here for filter"/>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                         <i class="fa fa-user fa-4x" ></i>
                     </div>
                     <h6 class="text-uppercase cardHeading">Total Users</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$totalUsers - 1}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="totalUsers">{{$totalUsers - 1}}</h2>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                         <i class="fa fa-user-lock fa-4x"></i>
                     </div>
                     <h6 class="text-uppercase cardHeading">Block Users</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$blockUsers}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="blockUsers">{{$blockUsers}}</h2>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                         <i class="fa fa-user-graduate fa-4x"></i>
                     </div>
                     <h6 class="text-uppercase cardHeading">Total Students</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$students}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="totalStudents">{{$students}}</h2>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Applications Forms Received from Students</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$applyForScholorship['all']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="applyForScholorshipAll">{{$applyForScholorship['all']}}</h2>
                 </div>
             </div>
         </div>
@@ -153,7 +153,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Applications forms Approved</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$applyForScholorship['approved']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="applyForScholorshipApproved">{{$applyForScholorship['approved']}}</h2>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Applications forms Rejected</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$applyForScholorship['rejected']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="applyForScholorshipRejected">{{$applyForScholorship['rejected']}}</h2>
                 </div>
             </div>
         </div>
@@ -178,7 +178,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Claim Forms Received from Students</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$claimForScholorship['all']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="claimForScholorshipAll">{{$claimForScholorship['all']}}</h2>
                 </div>
             </div>
         </div>
@@ -189,7 +189,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Claim form Approved</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$claimForScholorship['approved']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="claimForScholorshipApproved">{{$claimForScholorship['approved']}}</h2>
                 </div>
             </div>
         </div>
@@ -200,7 +200,7 @@
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
                     <h6 class="text-uppercase cardHeading">Claim form Rejected</h6>
-                    <h2 class="my-2 font-w600 font-weight-bold">{{$claimForScholorship['rejected']}}</h2>
+                    <h2 class="my-2 font-w600 font-weight-bold" id="claimForScholorshipRejected">{{$claimForScholorship['rejected']}}</h2>
                 </div>
             </div>
         </div>
@@ -393,6 +393,17 @@
                         console.log('Response:', response);
                         $('#application-form-submitted').html(response?.data?.applyScholarShip)
                         $('#claim-form-submitted').html(response?.data?.claimScholarShip)
+                        $('#totalUsers').html(response?.data?.totalUsers)
+                        $('#blockUsers').html(response?.data?.totalStudents)
+                        $('#totalStudents').html(response?.data?.totalBlockUsers)
+
+                        $('#applyForScholorshipAll').html(response?.data?.applyForScholorship?.all)
+                        $('#applyForScholorshipApproved').html(response?.data?.applyForScholorship?.approved)
+                        $('#applyForScholorshipRejected').html(response?.data?.applyForScholorship?.rejected)
+                        
+                        $('#claimForScholorshipAll').html(response?.data?.claimForScholorship?.all)
+                        $('#claimForScholorshipApproved').html(response?.data?.claimForScholorship?.approved)
+                        $('#claimForScholorshipRejected').html(response?.data?.claimForScholorship?.pending)
                     },
                     error: function(xhr, status, error){
                         // Handle error

@@ -56,9 +56,46 @@ class HomeController extends Controller
             $applyScholarShip = ApplyScholarShip::whereBetween('created_at', [$start, $end])->get()->count();
             $claimScholarShip = ClaimScholarShip::whereBetween('created_at', [$start, $end])->get()->count();
 
+
+            $users = User::with(['roles'])->whereBetween('created_at', [$start, $end])->get();
+            $totalUsers = $users->count();
+            $totalStudents = $users->filter(function ($value){
+                return $value->roles()->first() ? $value->roles()->first()->name === 'student' : 0;
+            })->count();
+            $totalBlockUsers = $users->filter(function ($value){
+                return $value->is_block === 1;
+            })->count();
+
+
+            $applyForScholorship = ApplyScholarShip::whereBetween('created_at', [$start, $end])->get()->groupBy('status');
+            $approved = isset($applyForScholorship['approved']) ? $applyForScholorship['approved']->count() : 0;
+            $rejected = isset($applyForScholorship['rejected']) ? $applyForScholorship['rejected']->count() : 0;
+            $pending = isset($applyForScholorship['pending']) ? $applyForScholorship['pending']->count() : 0;
+            $applyForScholorship['all'] = (int)$approved + (int)$rejected + (int)$pending;
+            $applyForScholorship['approved'] = $approved;
+            $applyForScholorship['rejected'] = $rejected;
+            $applyForScholorship['pending'] = $pending;
+
+
+            $claimForScholorship = ClaimScholarShip::whereBetween('created_at', [$start, $end])->get()->groupBy('status');
+            $approved_ = isset($claimForScholorship['approved']) ? $claimForScholorship['approved']->count() : 0;
+            $rejected_ = isset($claimForScholorship['rejected']) ? $claimForScholorship['rejected']->count() : 0;
+            $pending_ = isset($claimForScholorship['pending']) ? $claimForScholorship['pending']->count() : 0;
+            
+            $claimForScholorship['all'] = (int)$approved_ + (int)$rejected_ + (int)$pending_;
+            $claimForScholorship['approved'] = $approved_;
+            $claimForScholorship['rejected'] = $rejected_;
+            $claimForScholorship['pending'] = $pending_;
+
+
             $data = (object)[
+                'totalUsers' => $totalUsers,
+                'totalStudents' => $totalStudents,
+                'totalBlockUsers' => $totalBlockUsers,
                 'applyScholarShip' => $applyScholarShip,
-                'claimScholarShip' => $claimScholarShip
+                'claimScholarShip' => $claimScholarShip,
+                'applyForScholorship' => $applyForScholorship,
+                'claimForScholorship' => $claimForScholorship
             ];
 
             return response()->json(['data' => $data], 200);

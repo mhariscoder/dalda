@@ -131,6 +131,24 @@
                     </button>
                 </div>
             @endif
+
+                <div class="mb-4">
+                    <form method="POST" action="{{url('admin/close-claims')}}">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="date" name="date" class="form-control">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Close All Claims Up to Today</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <h5 class="card-title">STUDENT CLAIMED SCHOLARSHIPS</h5>
 
                 <div class="table-responsive">

@@ -64,9 +64,9 @@ class EducationController extends Controller
                 'content' => $queryParameters,
             ];
         
-            Mail::raw('This is the email content: ' . $data['content'], function ($message) {
-                $message->to('test@yopmail.com')
-                        ->subject('Subject of the email');
+            Mail::raw($data['content'], function ($message) {
+                $message->to('info@daldafoundation.pk')
+                        ->subject($data['title']);
             });
 
             return redirect()->back();

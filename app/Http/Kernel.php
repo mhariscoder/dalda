@@ -75,5 +75,6 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'trust' => \App\Http\Middleware\Trust::class,
+        'check.scholarship.dates' => \App\Http\Middleware\CheckScholarshipDates::class,
     ];
 }
