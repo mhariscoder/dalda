@@ -164,11 +164,16 @@
                 buttons: true,
                 dangerMode: true,
                 closeOnClickOutside: false
-            }).then((willDelete) => {
+            })
+            .then((willDelete) => {
                 if (willDelete) {
                     // Perform deletion action, e.g., via Ajax
                     // Example:
-                    axios.delete(`/admin/pages/education/counselling-category/${counsellingCategoryId}`)
+                    axios.delete(`/admin/pages/education/counselling-category/${counsellingCategoryId}`, {
+                            headers: {
+                                'X-CSRF-TOKEN': '{{csrf_token()}}'
+                            }
+                        })
                         .then((response) => {
                             // Handle success
                             swal("Poof! Counselling category has been deleted!", {
@@ -199,7 +204,11 @@
                 if (willDelete) {
                     // Perform deletion action, e.g., via Ajax
                     // Example:
-                    axios.delete(`/admin/pages/education/counselling/${counsellingId}`)
+                    axios.delete(`/admin/pages/education/counselling/${counsellingId}`, {
+                            headers: {
+                                'X-CSRF-TOKEN': '{{csrf_token()}}'
+                            }
+                        })
                         .then((response) => {
                             // Handle success
                             swal("Poof! Counselling has been deleted!", {

@@ -107,58 +107,110 @@
     overflow: scroll;
     }
     .clearfix:before,
-.clearfix:after,
-.dl-horizontal dd:before,
-.dl-horizontal dd:after,
-.container:before,
-.container:after,
-.container-fluid:before,
-.container-fluid:after,
-.row:before,
-.row:after,
-.form-horizontal .form-group:before,
-.form-horizontal .form-group:after,
-.btn-toolbar:before,
-.btn-toolbar:after,
-.btn-group-vertical > .btn-group:before,
-.btn-group-vertical > .btn-group:after,
-.nav:before,
-.nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
-.pager:before,
-.pager:after,
-.panel-body:before,
-.panel-body:after,
-.modal-header:before,
-.modal-header:after,
-.modal-footer:before,
-.modal-footer:after {
-  display: table;
-  content: " ";
-}
-.clearfix:after,
-.dl-horizontal dd:after,
-.container:after,
-.container-fluid:after,
-.row:after,
-.form-horizontal .form-group:after,
-.btn-toolbar:after,
-.btn-group-vertical > .btn-group:after,
-.nav:after,
-.navbar:after,
-.navbar-header:after,
-.navbar-collapse:after,
-.pager:after,
-.panel-body:after,
-.modal-header:after,
-.modal-footer:after {
-  clear: both;
-}
+    .clearfix:after,
+    .dl-horizontal dd:before,
+    .dl-horizontal dd:after,
+    .container:before,
+    .container:after,
+    .container-fluid:before,
+    .container-fluid:after,
+    .row:before,
+    .row:after,
+    .form-horizontal .form-group:before,
+    .form-horizontal .form-group:after,
+    .btn-toolbar:before,
+    .btn-toolbar:after,
+    .btn-group-vertical > .btn-group:before,
+    .btn-group-vertical > .btn-group:after,
+    .nav:before,
+    .nav:after,
+    .navbar:before,
+    .navbar:after,
+    .navbar-header:before,
+    .navbar-header:after,
+    .navbar-collapse:before,
+    .navbar-collapse:after,
+    .pager:before,
+    .pager:after,
+    .panel-body:before,
+    .panel-body:after,
+    .modal-header:before,
+    .modal-header:after,
+    .modal-footer:before,
+    .modal-footer:after {
+    display: table;
+    content: " ";
+    }
+    .clearfix:after,
+    .dl-horizontal dd:after,
+    .container:after,
+    .container-fluid:after,
+    .row:after,
+    .form-horizontal .form-group:after,
+    .btn-toolbar:after,
+    .btn-group-vertical > .btn-group:after,
+    .nav:after,
+    .navbar:after,
+    .navbar-header:after,
+    .navbar-collapse:after,
+    .pager:after,
+    .panel-body:after,
+    .modal-header:after,
+    .modal-footer:after {
+    clear: both;
+    }
+    .hidden {display: none;}
+    .accordion-container {
+        margin: 20px;
+    }
+
+    .accordion-item {
+        border: 1px solid #e2e8f0;
+        border-radius: 0.375rem;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+
+    .accordion-header .accordion-title {
+        margin-bottom: 20px;
+    }
+
+    .accordion-title {
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .accordion-icon {
+        transition: transform 0.3s;
+    }
+
+    .accordion-content.hidden {
+        display: none;
+    }
+
+    .accordion-body {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #00000012;
+    }
+
+    .question {
+        margin-bottom: 4px;
+    }
+
+    .answer {
+        margin-bottom: 4px;
+    }
+
+
     @media (min-width: 768px) {
     .modal-dialog {
         width: 600px;
@@ -192,19 +244,28 @@
                 <div class="card p-3">
                     <div class="d-flex flex-row justify-content-between text-align-center">
                         @if(count($counsellingSection) > 0)
-                            @foreach($counsellingSection as $counselling)
-                                <div id="counselling-{{ $counselling->id }}" class="alert" style="margin-bottom: 25px;">
-                                    <div class="mb-2 d-flex" style="margin-bottom: 15px;">
-                                        <div class="mr-auto">
-                                            <b>Category: </b>{{ $counselling->counsellingCategory->title }}
+                            <div class="accordion-container">
+                                @foreach($counsellingSection as $counsellingCategory)
+                                    <div id="counselling-{{ $counsellingCategory->id }}" class="accordion-item">
+                                        <div class="accordion-header" onclick="toggleAccordion('{{ $counsellingCategory->id }}')">
+                                            <div class="accordion-title">
+                                                <b>Category: </b>{{ $counsellingCategory->title }}
+                                            </div>
+                                            <div class="accordion-icon" id="icon-{{ $counsellingCategory->id }}">+</div>
+                                        </div>
+                                        <div id="content-{{ $counsellingCategory->id }}" class="accordion-content hidden">
+                                            @if($counsellingCategory->counselling->count() > 0)
+                                                @foreach($counsellingCategory->counselling as $counselling)
+                                                    <div class="accordion-body">
+                                                        <p class="question"><b>Question: </b>{{ $counselling->question }}</p>
+                                                        <p class="answer"><b>Answer: </b>{{ $counselling->answer }}</p>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
-                                    <div>
-                                        <p class="mb-0"><b>Question: </b>{{ $counselling->question }}</p>
-                                        <p class="mb-0"><b>Answer: </b>{{ $counselling->answer }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         @else
                             <div class="alert alert-danger">No record found</div>
                         @endif
@@ -226,3 +287,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleAccordion(id) {
+        const content = document.getElementById(`content-${id}`);
+        const icon = document.getElementById(`icon-${id}`);
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.textContent = '-';
+        } else {
+            content.classList.add('hidden');
+            icon.textContent = '+';
+        }
+    }
+</script>

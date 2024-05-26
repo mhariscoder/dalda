@@ -202,6 +202,7 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
 
             Route::get('/students/applied-scholarships/export', 'ExportController@applyForScholarship');
             Route::get('/students/claimed-scholarships/export', 'ExportController@claimForScholarship');
+            Route::post('/close-claims', 'ClaimScholarShipController@closeClaims')->name('close-claims');
         });
 
         Route::namespace('Website')->group(function () {
@@ -409,6 +410,7 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
         });
 
         Route::post('/forms-filter', 'HomeController@formsFilter');
+        
     });
 });
 
@@ -441,15 +443,15 @@ Route::namespace('FrontEnd')->group(function () {
             Route::get('/upload-documents', 'UploadDocumentController@index');
             Route::get('/offered-courses', 'CourseOfferingController@index');
             Route::get('/apply-for-scholarship', 'ApplyScholarShipController@index');
-            Route::get('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApply');
-            Route::post('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApplyData');
+            Route::get('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApply')->middleware('check.scholarship.dates');
+            Route::post('/add-apply-for-scholarship', 'ApplyScholarShipController@addStudentApplyData')->middleware('check.scholarship.dates');
             Route::get('/update-apply-for-scholarship/{applyId}', 'ApplyScholarShipController@updateApply');
             Route::post('/update-apply-for-scholarship/{applyId}', 'ApplyScholarShipController@updateApplyData');
             Route::get('/apply-for-scholarship-detail/{applyId}', 'ApplyScholarShipController@detailStudentApply');
             Route::get('/admit-card/{applyId}', 'ApplyScholarShipController@generateAdmitCard');
             Route::get('/claim-for-scholarship', 'ClaimScholarShipController@index');
-            Route::get('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaim');
-            Route::post('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaimData');
+            Route::get('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaim')->middleware('check.scholarship.dates');
+            Route::post('/add-claim-for-scholarship', 'ClaimScholarShipController@addStudentClaimData')->middleware('check.scholarship.dates');
             Route::get('/claim-for-scholarship-detail/{claimId}', 'ClaimScholarShipController@detailStudentClaim');
             Route::get('/update-claim-for-scholarship/{claimId}', 'ClaimScholarShipController@updateStudentClaim');
             Route::post('/update-claim-for-scholarship/{claimId}', 'ClaimScholarShipController@updateStudentClaimData');

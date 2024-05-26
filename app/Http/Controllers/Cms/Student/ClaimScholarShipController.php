@@ -10,6 +10,7 @@ use App\Models\Installment;
 use App\Models\Notification;
 use App\Models\UploadDocument;
 use App\Models\User;
+use App\Models\Operation;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -700,5 +701,27 @@ class ClaimScholarShipController extends Controller
         }
 
         return redirect('admin/claim-for-scoloarships')->with('success', 'Import Successfully!');
+    }
+
+    public function closeClaims(Request $request)
+    {
+        try {
+            $request->validate([
+                'date' => 'required|date'
+            ]);
+
+            $date = $request->input('date');
+
+            $findRequestedDateOperation = Operation::query()->where('status', 0)->where('date', '>=', $date)->first();
+
+            if($findRequestedDateOperation) return redirect()->back()->withErrors('This date operation is an already in queue!');
+
+            Operation::query()->create([
+                'name' => 'claim-operation-create',
+                'date' => $date
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 }
