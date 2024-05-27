@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="row py-2">
+                    <div class="row mb-4">
                         <div class="col-4">
                             <div class="card card-coin">
                                 <div class="card-body">
@@ -68,6 +68,25 @@
                                     <h2 class="my-2 font-w600 font-weight-bold" id="claim-form-submitted">0</h2>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="POST" action="{{url('admin/appeared-in-test')}}">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h6 class="text-uppercase">Appeared In Test</h6>
+                                        <div class="input-group">
+                                            <input type="number" name="appeared_in_test" class="form-control" placeholder="Appeared In Test" value="{{$appearedInTest}}">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary">SAVE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -141,7 +160,7 @@
                     <!-- <div class="rotate">
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
-                    <h6 class="text-uppercase cardHeading">Applications Forms Received from Students</h6>
+                    <h6 class="text-uppercase cardHeading">Total application received</h6>
                     <h2 class="my-2 font-w600 font-weight-bold" id="applyForScholorshipAll">{{$applyForScholorship['all']}}</h2>
                 </div>
             </div>
@@ -152,7 +171,7 @@
                     <!-- <div class="rotate">
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
-                    <h6 class="text-uppercase cardHeading">Applications forms Approved</h6>
+                    <h6 class="text-uppercase cardHeading">Applications forms awarded</h6>
                     <h2 class="my-2 font-w600 font-weight-bold" id="applyForScholorshipApproved">{{$applyForScholorship['approved']}}</h2>
                 </div>
             </div>
@@ -177,7 +196,7 @@
                     <!-- <div class="rotate">
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
-                    <h6 class="text-uppercase cardHeading">Claim Forms Received from Students</h6>
+                    <h6 class="text-uppercase cardHeading">Total claim received</h6>
                     <h2 class="my-2 font-w600 font-weight-bold" id="claimForScholorshipAll">{{$claimForScholorship['all']}}</h2>
                 </div>
             </div>
@@ -188,7 +207,7 @@
                     <!-- <div class="rotate">
                         <i class="fa fa-graduation-cap fa-4x"></i>
                     </div> -->
-                    <h6 class="text-uppercase cardHeading">Claim form Approved</h6>
+                    <h6 class="text-uppercase cardHeading">Claim form awarded</h6>
                     <h2 class="my-2 font-w600 font-weight-bold" id="claimForScholorshipApproved">{{$claimForScholorship['approved']}}</h2>
                 </div>
             </div>

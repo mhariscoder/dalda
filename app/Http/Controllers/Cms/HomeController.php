@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ApplyScholarShip;
 use App\Models\ClaimScholarShip;
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -43,8 +44,11 @@ class HomeController extends Controller
         $claimForScholorship['rejected'] = $rejected_;
         $claimForScholorship['pending'] = $pending_;
 
+        $settings = Setting::query()->first();
+        $appearedInTest = 0;
+        if($settings) $appearedInTest = $settings->appeared_in_test;
 
-        return view('cms.index',compact('totalUsers','blockUsers','students','appliedScholarships','claimedScholarships', 'applyForScholorship', 'claimForScholorship'));
+        return view('cms.index', compact('totalUsers','blockUsers','students','appliedScholarships','claimedScholarships', 'applyForScholorship', 'claimForScholorship', 'appearedInTest'));
     }
 
     public function formsFilter(Request $request)

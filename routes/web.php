@@ -203,6 +203,7 @@ Route::namespace('Cms')->prefix('admin')->group(function () {
             Route::get('/students/applied-scholarships/export', 'ExportController@applyForScholarship');
             Route::get('/students/claimed-scholarships/export', 'ExportController@claimForScholarship');
             Route::post('/close-claims', 'ClaimScholarShipController@closeClaims')->name('close-claims');
+            Route::post('/appeared-in-test', 'SettingController@appearedInTestCreate')->name('appeared-in-test');
         });
 
         Route::namespace('Website')->group(function () {
